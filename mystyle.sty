@@ -7,9 +7,9 @@
 \usepackage{mathtools}
 \usepackage{amssymb}
 \usepackage{amsthm}
-\usepackage{setspace}
+\usepackage{hyperref}
 %\usepackage{indentfirst}
-%\usepackage{sectsty}
+\usepackage{setspace}
 \usepackage{verbatim}
 \usepackage{enumitem}
 \usepackage{calrsfs}
@@ -19,7 +19,7 @@
 \makeatletter \renewenvironment{proof}[1][\proofname] {\par\pushQED{\qed}\normalfont\topsep6\p@\@plus6\p@\relax\trivlist\item[\hskip\labelsep\bfseries#1\@addpunct{.}]\ignorespaces}{\popQED\endtrivlist\@endpefalse} \makeatother
 
 %\sectionfont{\large}
-%\numberwithin{equation}{section}
+\numberwithin{equation}{section}
 
 % Convenient macros
 \renewcommand{\phi}{\varphi}
@@ -63,12 +63,13 @@
 \renewcommand{\langle}{\left<}
 \renewcommand{\rangle}{\right>}
 
-\numberwithin{equation}{subsection}
+\numberwithin{equation}{section}
 
 \theoremstyle{plain}
 \newtheorem{theorem}{Теорема}
 \newtheorem{lemma}{Лемма}
 \newtheorem{statement}{Утверждение}
+\newtheorem{corollary}{Следствие}
 
 \theoremstyle{definition}
 \newtheorem{definition}{Определение}

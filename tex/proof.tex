@@ -1,0 +1,197 @@
+\section{Доказательства основных результатов}
+Пусть задан операторный полином $ \mathcal A \in \End X$, разложенный по степеням оператора $A$:
+\[  \mathcal A = C_0 A^N + C_1 A^{N - 1} + \dotsc + C_N, \]
+где $A, C_0, \dotsc, C_N \in \End X, N \in \mathbb{N}$, и соответствующий ему оператор $\mathbb A \in \End{X^N}$:
+\[ \mathbb A \sim \begin{pmatrix}
+    A & -I & 0  & \cdots & 0 & 0 \\
+    0 & A  & -I & \cdots & 0 & 0 \\
+    0 & 0  & A & \cdots & 0 & 0 \\
+    \vdots & \vdots & \vdots & \ddots & \vdots & \vdots \\
+    0 & 0 & 0 & \cdots & A & -I \\
+    C_N & C_{N-1} & C_{N-2} & \cdots & C_2 & C_0 A + C_1
+   \end{pmatrix}. \]
+
+В отличие от статьи \cite{BasDup15}, где изучались разностные операторы второго порядка,
+оператор $C_0$ из представления операторного полинома $\mathcal A$ может быть необратимым
+оператором. Столь общий случай (необратимого оператора $C_0$) позволяет получать
+аналоги теорем 1--4 для случая операторного полинома $\mathcal A$, где оператор $A$ ---
+замкнутый оператор с непустым резольвентным множеством (в частности,
+дифференциальный оператор). Следует отметить, что такой прием не применим к дифференциальным операторам второго порядка, рассматриваемых в статьях \cite{shkalikov,HryShk03}. В данной статье предложен иной (более простой)
+способ доказательства основных результатов статьи. Он состоит в сопоставлении
+операторному полиному порядка $N$ оператора $\widetilde{\mathbb A}$, заданного операторной матрицей порядка $N+1$, который имеет то же множество состояний обратимости.
+
+Введём в рассмотрение оператор $\widetilde{\mathbb A}$ из алгебры $\End{X^{N+1}}$.
+\[ \widetilde{\mathbb A} \sim \begin{pmatrix}
+    A & -I & 0  & \cdots & 0 & 0 \\
+    0 & A  & -I & \cdots & 0 & 0 \\
+    0 & 0  & A & \cdots & 0 & 0 \\
+    \vdots & \vdots & \vdots & \ddots & \vdots & \vdots \\
+    0 & 0 & 0 & \cdots & A & -I \\
+    C_N & C_{N-1} & C_{N-2} & \cdots & C_1 & C_0 A
+   \end{pmatrix}. \]
+
+При доказательстве теорем \ref{th:main_abstract} и \ref{th:inverse} вначале соответствующие утверждения устанавливаются для операторов $\mathcal A$ и $\widetilde{\mathbb A}$, а затем, используя представление оператора $\mathcal A$ в виде
+\[\mathcal A = (C_0 A + C_1) A^{N-1} + C_2 A^{N-2} + \dotsc + C_N, \]
+соответствующие результаты устанавливаются для операторов $\mathcal A$ и $\mathbb A$. Таким образом вычисляется матрица оператора $\mathbb A^{-1} \in \End{X^N}$.
+
+Зададим операторы $\mathbb B, \mathcal J_1, \mathcal J_2, \mathcal J_3 \in \End X^{N+1}$ матрицами
+\begin{gather*}
+    \mathbb B \sim \begin{pmatrix}
+     \mathcal A & 0 & \cdots &  0 \\
+    0 & -I  & \cdots &  0 \\
+    \vdots & \vdots & \ddots &  \vdots \\
+    0 & 0 & \cdots &  -I
+   \end{pmatrix}, \quad\quad \mathcal J_1 \sim \begin{pmatrix}
+    0 & I & 0 & \cdots &  0 \\
+    0 & 0 & I & \cdots &  0 \\
+    \vdots & \vdots & \vdots &  \ddots & \vdots\\
+    0 & 0 & 0 & \cdots & I \\
+    I & 0 & 0 & \cdots & 0
+   \end{pmatrix} \\
+    \begin{aligned}
+        (\mathbb B x)_1 &= \mathcal A x_1 = \sum_{k = 0}^{N} C_k A^{N - k} x_1, \\
+        (\mathbb B x)_k &= -x_k, \quad k = \overline{2,N+1};
+    \end{aligned}
+    \quad\quad
+    \begin{aligned}
+        (\mathcal J_1 x)_k &= x_{k + 1}, \quad k = \overline{1,N}, \\
+        (\mathcal J_1 x)_{N+1} &= x_1;
+    \end{aligned}
+\end{gather*}
+
+\[ B_i = \sum_{k=0}^{N-i} C_k A^{N-k-i}, \quad i = \overline{1,N}, \]
+
+\[ \mathcal J_2 \sim \begin{pmatrix}
+    I & -B_1 & -B_2 & \cdots & -B_N \\
+    0 & I & 0 & \cdots &  0 \\
+    0 & 0 & I & \cdots &  0 \\
+    \vdots & \vdots & \vdots &  \ddots & \vdots \\
+    0 & 0 & 0 & \cdots & I
+   \end{pmatrix}, \quad \mathcal J_3 \sim \begin{pmatrix}
+    I & 0 & 0 & \cdots & 0 & 0 \\
+    -A & I & 0 & \cdots & 0 & 0 \\
+    0 & -A & I & \cdots & 0 & 0 \\
+    \vdots & \vdots & \ddots & \ddots & \vdots & \vdots \\
+    0 & 0 & 0 & \ddots & I & 0 \\
+    0 & 0 & 0 & \cdots & -A & I
+   \end{pmatrix}, \]
+\begin{align*}
+    (\mathcal J_2 x)_1 &= x_1 - \sum_{i=1}^{N} B_i x_{i + 1}, \quad &(\mathcal J_3 x)_1 &= x_1, \\
+    (\mathcal J_2 x)_k &= x_k, \quad k = \overline{2,N+1}; \quad &(\mathcal J_3 x)_k &= x_k - Ax_{k-1}, \quad k = \overline{2,N+1}.
+\end{align*}
+
+\begin{lemma}
+    Состояния обратимости операторов $\widetilde{\mathbb A}$ и $\mathbb B$ совпадают.
+\end{lemma}
+
+\begin{proof}
+Непосредственно проверяется, что
+\[ \widetilde{\mathbb A} = \mathcal J_1 \mathcal J_2 \mathbb B \mathcal J_3, \]
+причем ясно, что $\mathcal J_i$, $i = \overline{1,3}$ --- обратимые операторы ($\mathcal J_1$ --- оператор перестановки, $\mathcal J_2$ и $\mathcal J_3$ имеют верхнетреугольную и нижнетреугольную матрицы соответственно с обратимыми операторами на главной диагонали).
+\end{proof}
+
+Таким образом, доказательство теоремы \ref{th:main_abstract} сводится к доказательству следующей теоремы.
+\begin{theorem}\label{th:bigth}
+    Состояния обратимости операторов $\mathcal A$ и $\mathbb B$ совпадают.
+\end{theorem}
+
+Введем операторы $ J_1 \hm\in \Hom(X, X^{N+1})$, $ J_2 \in \Hom(X^{N+1}, X)$, действующие по правилам
+\begin{align*}
+    ( J_1 x)_1 &= x, \\
+    ( J_1 x)_k &= 0, \quad k = \overline{2,N+1};
+\end{align*}
+\[  J_2x = x_1, \quad x \in X^{N+1}. \]
+
+\begin{lemma}\label{le:keris}
+    Ядра операторов $\mathcal A$ и $\mathbb B$ изоморфны. При этом
+    \begin{align*}
+         J_1(\ker \mathcal A) &= \ker \mathbb B; \\
+         J_2(\ker \mathbb B) &= \ker \mathcal A.
+    \end{align*}
+\end{lemma}
+
+Заметим, что $\ker \mathbb B = \ker \mathcal A \times \menge{0}^{N}$.
+
+\begin{proof}
+    Отображение $J_1$, очевидно, осуществляет изоморфизм, если рассматривать его как отображение между $\ker \mathcal A$ и $\ker \mathbb B$. При этом $ J_2$ является обратным отображением к $ J_1$, если его рассмотреть как отображение между $\ker \mathbb B$ и $\ker \mathcal A$.
+\end{proof}
+
+Обозначим символом $\projset{M}$ множество ограниченных проекторов на подпространство $M$ банахова пространства $X$.
+
+\begin{lemma}\label{le:kerproj}
+    Пусть $\mathbb P$ --- ограниченный проектор на $\ker \mathbb B$. Тогда его матрица имеет вид
+    \[ \begin{pmatrix}
+    P & PD_2 & \cdots & PD_{N+1} \\
+    0 & 0 & \cdots  & 0 \\
+    \vdots & \vdots & \ddots & \vdots \\
+    0 & 0 & \cdots & 0
+   \end{pmatrix}, \]
+   где $D_k \in \End X$, $k = \overline{2,N+1}$ и $P \in \projset{\ker \mathcal A}$. Верно и обратное: если $P \in \projset{\ker \mathcal A}$, то оператор, заданный такой матрицей, является
+   проектором на $\ker \mathbb B$.
+\end{lemma}
+
+\begin{proof}
+    Пусть проектор $\mathbb P$ задан матрицей $(P_{ij})_{n\times n}$. Покажем сначала, что $P_{ij} = 0$ для любых $j$ и всех $i > 1$.
+
+    Пусть $x \in X$, $y^j \in X^{N+1}$, $j = \overline{1,N+1}$ и $y^j_k = \delta_{kj} x$, $k = \overline{1,N+1}$, где $\delta_{kj}$ --- символ Кронекера. По определению проектора $\mathbb P y^j \in \ker \mathbb B$, а значит $(\mathbb P y^j)_i = 0$ для всех $i > 1$.
+    \[ (\mathbb P y^j)_i = \sum_{k = 0}^N P_{ik} y^j_k = \sum_{k = 0}^N P_{ik} \delta_{kj} x = P_{ij} x = 0, \quad j = \overline{1,N+1}, \; i = \overline{2,N+1}. \]
+    Значит, в силу произвольности $x$, $P_{ij} = 0$, $j = \overline{1,N}, \; i = \overline{2,N+1}$.
+
+    Покажем, что $P_{11}$ --- проектор на $\ker  A$. Проверим идемпотентность. Пусть $x \in X$. Тогда, поскольку $\mathbb P^2 = \mathbb P$ для всех $j = \overline{1,n}$, то
+    \[ P_{1j} x = (\mathbb P y^j)_1 = (\mathbb P^2 y_j)_1 = \sum_{k = 0}^{N+1} P_{1k} (\mathbb P y^j)_k = P_{11} (\mathbb P y^j)_1 = P_{11} P_{1j} x. \]
+    Значит $P_{1j} = P_{11} P_{1j}$, $j = \overline{1,N+1}$.
+
+    Поскольку $\mathbb Py^1 \in \ker \mathbb B$, $P_{11} x = (\mathbb P y^1)_1 \in \ker  A$, а значит
+    $\im(P_{11}) \subset \ker  A$.
+
+    Взяв $x \in \ker  A$ (следовательно, $y^1 \in \ker \mathbb B$) получим
+    \[ x = y^1_1 = (\mathcal P y^1)_1 = P_{11} x, \]
+    откуда $\ker  A \subset \im(P_{11})$.
+    Таким образом, $\im(P_{11}) = \ker  A$ и $P_{11} \in \projset{\ker  A}$.
+
+    Обратное утверждение очевидно.
+\end{proof}
+
+\begin{proof}[ теоремы \ref{th:bigth}]
+Из лемм \ref{le:keris} и \ref{le:kerproj} следует, что свойства (1-4) определения \ref{def:stinv} для операторов $\mathcal A$ и $\mathbb B$ выполняются или не выполняются одновременно.
+
+Перейдём к рассмотрению свойств образов операторов $\mathcal A$ и $\mathbb B$. Очевидно, что
+\[ \im \mathbb B = \im \mathcal A \times \underbrace{X \times \dotsc \times X}_\text{$N$ раз}. \]
+
+Отсюда сразу получаем, что образы этих операторов замкнуты или не замкнуты (плотны или не плотны, совпадают или не совпадают со всем пространством) одновременно (свойства (5), (9-10), (11) определения \ref{def:stinv}). Ясно, что свойства (6) и (12) также являются общими для рассматриваемых операторов в силу леммы \ref{le:keris}.
+
+Пусть подпространство $\im \mathcal A$ замкнуто. Тогда можно рассматривать факторпространство $X/\im \mathcal A$. Далее, поскольку пространство $ X^{N+1} / \im \mathbb B $ и пространство $(X / \im \mathcal A) \hm \times \menge{0} \times \dotsc \times \menge{0}$ канонически изоморфны, свойства (7-8) для операторов $\mathcal A$ и $\mathbb B$ также выполняются или не выполняются одновременно.
+\end{proof}
+
+\begin{proof}[ теоремы \ref{th:inverse}]
+    Рассмотрим разложение $\widetilde{\mathbb A} = \mathcal J_1 \mathcal J_2 \mathbb B \mathcal J_3$. Каждый из операторов в этом разложении обратим. Запишем обратные к ним (проверяется непосредственно):
+    \[\mathcal J_3^{-1} \sim \begin{pmatrix}
+    I & 0 & 0 & \cdots & 0 & 0 \\
+    A & I & 0 & \cdots & 0 & 0 \\
+    A^2 & A & I & \cdots & 0 & 0 \\
+    \vdots & \vdots & \ddots & \ddots & \vdots & \vdots \\
+    A^{N-1} & A^{N-2} & A^{N-3} & \ddots & I & 0 \\
+    A^N & A^{N-1} & A^{N-2} & \cdots & A & I
+   \end{pmatrix}; \quad
+   \mathcal J_2^{-1} \sim \begin{pmatrix}
+    I & B_1 & B_2 & \cdots & B_N \\
+    0 & I & 0 & \cdots &  0 \\
+    0 & 0 & I & \cdots &  0 \\
+    \vdots & \vdots & \vdots &  \ddots & \vdots \\
+    0 & 0 & 0 & \cdots & I
+   \end{pmatrix};
+   \]
+   \[\mathbb B^{-1} \sim \begin{pmatrix}
+     \mathcal A^{-1} & 0 & \cdots &  0 \\
+    0 & -I  & \cdots &  0 \\
+    \vdots & \vdots & \ddots &  \vdots \\
+    0 & 0 & \cdots &  -I
+   \end{pmatrix}; \quad\quad \mathcal J_1^{-1} \sim \begin{pmatrix}
+    0 & 0 & \cdots & 0 &  I \\
+    I & 0 & \cdots & 0 &  0 \\[-0.3em]
+    \vdots & \ddots & \ddots &  \vdots & \vdots\\[-0.5em]
+    0 & 0 & \ddots & 0 & 0 \\
+    0 & 0 & \cdots & I & 0
+   \end{pmatrix}.\]
+   Тогда $\widetilde{\mathbb A}^{-1} = \mathcal J_3^{-1}  \mathbb B^{-1} \mathcal J_2^{-1} \mathcal J_1^{-1}$. Перемножая соответствующие матрицы, получим матрицу для оператора $\widetilde{\mathbb A}^{-1}$, откуда нетрудно получить матрицу для оператора $\mathbb A^{-1}$.
+\end{proof}

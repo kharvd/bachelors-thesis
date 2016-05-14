@@ -1,0 +1,286 @@
+\section{Условия фредгольмовости разностного оператора}\label{sec:fredhlom}
+В этом параграфе получены необходимые и достаточные условия фредгольмовости разностного оператора вида \eqref{eq:d_def}, т.е. оператора
+\begin{gather*}
+    \mathcal A \colon l^p  \to l^p, \\
+    (\mathcal A x)(k) = x(k + N) + C_1(k) x(k + N - 1) + \dotsc + C_N(k) x(k), \\
+    k \in \groupz, \; x \in l^p = l^p(\groupz, Y), \; p \in [1, \infty].
+\end{gather*}
+
+Условия получены на основе сопоставления разностному оператору $\mathcal A$ порядка $N$ разностного оператора первого порядка $ \mathbb A\colon l^p(\groupz, Y^N) \to l^p(\groupz, Y^N)$, определенного формулой \eqref{eq:difference_first_order}, где $\mathcal C_0(k)$ --- тождественный оператор в $Y^N$ при любом $k \in \groupz$. Эти условия описываются с использованием понятия экспоненциальной дихотомии дискретного семейства эволюционных оператоов, которое строится по операторной функции $\mathcal C_1\colon \groupz \to \End{Y^N}$.
+
+Рассмотрим разностный оператор первого порядка $\mathbb D$ из $\End l^p(\groupz, X)$ определенный формулой
+\[ (\mathbb D x)(n) = x(n) - U(n)x(n - 1), \quad n \in \groupz, x \in l^p(\groupz, X), \]
+где $U \in l^\infty(\groupz, X)$, а $X$ --- комплексное банахово пространство.
+
+По функции $U$ построим дискретное семейство эволюционных операторов
+\[\mathcal U \colon \Delta = \menge{(n, m) \in \groupz \times \groupz : m \leq n} \to \End X, \]
+определенное равенствами
+\[
+    \mathcal U (n, m) = \begin{cases}
+        U(n)U(n-1)\dotsc U(m+1), & m < n, \\
+        I,                       & m = n,
+    \end{cases}
+\]
+где $m, n \in \groupz$.
+
+\begin{definition}\label{def:dich}
+    Будем говорить, что семейство эволюционных операторов $\mathcal U$ допускает \emph{экспоненциальную дихотомию} на множестве $\mathbb J \subset \groupz$, если существуют ограниченная проекторнозначная функция $P \colon \mathbb J \to \End X$ и постоянные $M_0 \geq 1$, $\gamma > 0$ такие, что выполнены следующие условия
+    \begin{enumerate}
+        \item $\mathcal U(n, m) P(m) = P(n) \mathcal U(n, m)$, для всех $m \leq n$, $m, n \in \mathbb J$;
+        \item $\norm{\mathcal U(n, m) P(m)} \leq M_0 \exp(-\gamma (n - m))$, для всех $m \leq n$, $m, n \in \mathbb J$;
+        \item для $m < n$, $m, n \in \mathbb J$, сужение $\mathcal U_{n, m}: X'(m) \to X'(n)$ оператора $\mathcal U(n, m)$ на область значений $X'(m) = \im Q(m)$ дополнительного проектора $Q(m) = I - P(m)$ есть изоморфизм подпространств $X'(m)$ и $X'(n) = \im Q(n)$.
+        Тогда полагаем оператор $\mathcal U(m, n)$ равным оператору $\mathcal U_{n, m}^{-1}$ на $X'(n)$ и равным нулевому оператору на $X(n) = \im P(n) \subset X$.
+        \item $\norm{\mathcal U(m, n)} \leq M_0 \exp(\gamma (m - n))$ для всех $m \leq n$ из $\mathbb J$.
+    \end{enumerate}
+\end{definition}
+Пару проекторнозначных функций $P, Q\colon \mathbb J \to \End X$, участвующих в определении \ref{def:dich}, назовём \emph{расщепляющей парой} для семейства $\mathcal U$. Если $P= 0$ или $Q = 0$, то будем говорить, что для $\mathcal U$ имеет место \emph{тривиальная экспоненциальная дихотомия} на $\mathbb J$.
+
+\begin{theorem}[(\cite{BasPas01}, \cite{bohr2005})]\label{th:dich}
+    Для того чтобы разностный оператор $\mathbb D \in \End l^p(\groupz, X)$, определяемый функцией $U \in l^\infty(\groupz, X)$, был обратим, необходимо и достаточно, чтобы семейство эволюционных операторов $\mathcal U$ допускало экспоненциальную дихотомию на $\groupz$. Если оператор $\mathbb D$ обратим, то обратный к нему определяется формулой
+    \[ (\mathbb D^{-1} y)(n) = \sum_{m=-\infty}^\infty G(n, m) y(m), \quad n \in \groupz, y \in l^p(\groupz, X),\]
+    где функция Грина $G\colon \groupz^2 \to \End X$ имеет вид
+    \[ G(n, m) = \begin{cases}
+        \mathcal U(n, m) P(m), & m \leq n, \\
+        -\mathcal U(n, m) Q(m),& m > n,
+    \end{cases}, \quad m, n \in \groupz. \]
+\end{theorem}
+
+Этот результат для случая $p=\infty$ имеется в монографии Д. Хенри \cite{henri} (в статье \cite{BasPas01} была устранена неточность в доказательстве аналога теоремы \ref{th:dich} из этой монографии).
+
+Далее используется
+\begin{assumption}\label{assum:knot}
+    Существуют числа $a, b \in \groupz$, $a \leq b$, такие, что семейство эволюционных операторов $\mathcal U$ (построенное по функции $U\colon \groupz \to \End X$) допускает экспоненциальную дихотомию на множествах $\groupz_{-, a} = \menge{n \in \groupz : n \leq a}$, $\groupz_{b,+} = \menge{n \in \groupz : n \geq b}$ с расщепляющими парами проекторнозначных функций
+    \begin{align*}
+        P_{-}, Q_{-} &\colon \groupz_{-,a} \to \End X,\\
+        P_{+}, Q_{+} &\colon \groupz_{b,+} \to \End X.
+    \end{align*}
+\end{assumption}
+
+Определим оператор $\mathcal N_{b, a} \colon \im Q_{-}(a) \to \im Q_{+}(b)$, равенством
+\[ \mathcal N_{b, a} x = Q_{+}(b) \mathcal U(b, a) x, \quad x \in \im Q_{-}(a).\]
+
+Этот оператор введён в рассмотрение в статьях \cite{Bas00}, \cite{Bas13} и назван <<узловым>>. Важность его обусловлена тем, что он действует между подпространствами <<фазового>> пространства $X$, а не в $l^p(\groupz, X)$.
+
+Имеет место следующая теорема (\cite{Bas00}, \cite{Bas13}).
+\begin{theorem}\label{th:knot_stinv}
+    Пусть для семейства эволюционных операторов $\mathcal U \colon \Delta \to \End X$, построенным по функции $U\colon \groupz \to \End X$ выполнены условия предположения \ref{assum:knot}.
+
+    Тогда имеет место равенство
+    \[ \Stinv{\mathbb D} = \Stinv{\mathcal N_{b, a}}.\]
+
+    В частности, для фредгольмовости разностного оператора $\mathbb D$, необходимо и достаточно, чтобы узловой оператор $\mathcal N_{b, a} \colon \im Q_{-}(a) \to \im Q_{+}(b)$ являлся фредгольмовым оператором. При условии фредгольмовости узлового оператора имеют иместо равенства:
+    \begin{gather*}
+        \dim \ker \mathbb D = \dim \ker \mathcal N_{b, a}, \quad
+        \codim \im \mathbb D = \codim \im \mathcal N_{b, a}, \\
+        \ind \mathbb D = \ind \mathcal N_{b, a}.
+    \end{gather*}
+\end{theorem}
+
+Рассмотрим разностный оператор (см. формулу \eqref{eq:difference_short})
+\begin{gather*}
+\mathbb D = \mathbb S^{-1} \mathbb A = \mathbb S^{-1}(\mathbb S + \mathbb A_1) \in \End{l^p(\groupz, Y^N)}\\
+(\mathbb D x)(n) = x(n) + \mathcal C_1(n) x(n-1), \quad x \in l^p(\groupz, Y^N).
+\end{gather*}
+
+Заметим, что его состояния обратимости совпадают с состояниями обратимости оператора $\mathcal A$.
+
+\begin{definition}
+    Семейство эволюционных операторов $\mathcal U_1 \colon \groupz^2 \to \End{Y^N}$, построенное по функции $-\mathcal C_1 \colon \groupz \to \End{Y^N}$, назовем \emph{семейством эволюционных операторов для однородного разностного уравнения}
+    \begin{equation}\label{eq:difference_nth_hom}
+        x(k + N) + C_1(k) x(k + N - 1) + \dotsc + C_{N}(k) x(k) = 0, \quad k \in \groupz, \; x \in l^p(\groupz, Y).
+    \end{equation}
+\end{definition}
+
+Из теорем \ref{th:dich} и \ref{th:knot_stinv} получаем следующие утверждения.
+
+\begin{theorem}
+    Для того чтобы разностный оператор $\mathcal A\in \End{l^p}$, $p \in [1, \infty]$, определенный формулой \eqref{eq:d_def}, был обратим, необходимо и достаточно, чтобы семейство эволюционных операторов $\mathcal U_1$, построенное для разностного уравнения \eqref{eq:difference_nth_hom}, допускало экспоненциальную дихотомию на $\groupz$.
+\end{theorem}
+
+\begin{theorem}\label{th:fredholm_difference}
+    Пусть для семейства эволюционных операторов $\mathcal U = \mathcal U_1\colon \Delta \to \End Y^N$, построенного для разностного уравнения \eqref{eq:difference_nth_hom}, выполнены условия предположения \ref{assum:knot}.
+
+    Тогда имеет место равенство
+    \[ \Stinv{\mathcal A} = \Stinv{\mathcal N_{b, a}}.\]
+
+    В частности, для фредгольмовости разностного оператора $\mathcal A\in \End{l^p}$ необходимо и достаточно, чтобы узловой оператор $\mathcal N_{b, a}$ являлся фредгольмовым оператором. При условии фредгольмовости узлового оператора имеют место равенства:
+    \begin{gather*}
+        \dim \ker \mathcal A = \dim \ker \mathcal N_{b, a}, \quad
+        \codim \im \mathcal A = \codim \im \mathcal N_{b, a}, \\
+        \ind \mathcal A = \ind \mathcal N_{b, a}.
+    \end{gather*}
+\end{theorem}
+
+Отметим, что в условиях теоремы \ref{th:fredholm_difference} узловой оператор $\mathcal N_{b, a}$ действует между подпространствами банахова пространства $Y^N$.
+
+\begin{corollary}
+    Если оператор $\mathcal A$ фредгольмов в одном из пространств $l^p$, $p \in [1, \infty]$, то он фредгольмов и в остальных, и его индекс не зависит от значения $p$.
+\end{corollary}
+
+В условиях следующей теоремы будем использовать следующее
+\begin{assumption}\label{assum:limits}
+    Существуют пределы
+    \[ \lim_{n\to\pm\infty} C_i(n) = C_i^\pm \in \End X, \quad i = \overline{1,N}. \]
+\end{assumption}
+
+Под спектром операторного пучка
+\[L^\pm(\lambda) = \lambda^N + C_1^\pm \lambda^{N-1} + \dotsc + C_N^\pm, \quad \lambda \in \fieldc, \]
+будем понимать множество таких комплексных чисел $\lambda$, что $L^\pm(\lambda)$ --- необратимый в $\End Y$ оператор.
+
+\begin{theorem}
+    В условиях предположения \ref{assum:limits} разностный оператор $\mathcal A$ обратим, если спектральные радиусы $r(L^\pm) = \max\menge{\absv{\lambda} : \lambda \in \spectrum{L^\pm}}$ операторных пучков $L^\pm$ меньше единицы.
+\end{theorem}
+
+\begin{proof}
+    Непосредственно из теоремы \ref{th:main_abstract} следует, что спектры $\spectrum{\mathcal C_1^\pm}$ операторов $\mathcal C_1^\pm \in \End Y^N$, заданных матрицами
+    \[\mathcal C_1^\pm \sim \begin{pmatrix}
+    0 & -I & 0  & \cdots & 0 & 0 \\
+    0 & 0  & -I & \cdots & 0 & 0 \\
+    0 & 0  & 0 & \cdots & 0 & 0 \\
+    \vdots & \vdots & \vdots & \ddots & \vdots & \vdots \\
+    0 & 0 & 0 & \cdots & 0 & -I \\
+    C_N^\pm & C_{N-1}^\pm & C_{N-2}^\pm & \cdots & C_2^\pm & C_1^\pm
+   \end{pmatrix},\]
+    совпадают со спектрами $\spectrum{L^\pm}$ операторных пучков $L^\pm$, поэтому $r(\mathcal C_1^\pm) = r(L^\pm) < 1$.
+    Операторы $\mathcal C_1^\pm$ являются пределами последовательности $\mathcal C_1(n)$ в равномерной операторной топологии.
+    Тогда из \cite[теорема 3]{Bas00} следует, что оператор $\mathbb D$ обратим, следовательно обратим и оператор $\mathcal A$.
+\end{proof}
+
+Пусть теперь оператор $\mathcal A \in \End{l^p}$ имеет вид:
+\begin{gather*}
+    (\mathcal A x)(k) = C_0 x(k + N) + C_1 x(k + N - 1) + \dotsc + C_N x(k), \\
+    k \in \groupz, \; x \in l^p = l^p(\groupz, Y), \; p \in [1, \infty],
+\end{gather*}
+то есть $C_i(k) \equiv C_i \in Y^N$, $i = \overline{0,N}$ --- постоянные функции. В этом случае разностный оператор $\mathbb A$ задан выражением
+\begin{align*}
+    (\mathbb A y)(k) = \mathcal C_0 y(k + 1) + \mathcal C_1 y(k), \quad k \in \groupz, \; y \in l^p(\groupz; Y^N),
+\end{align*}
+где
+\[
+    \mathcal C_0 \sim \begin{pmatrix}
+    I & 0 & \cdots &  0 \\
+    0 & I  & \cdots &  0 \\
+    \vdots & \vdots & \ddots &  \vdots \\
+    0 & 0 & \cdots &  C_0
+   \end{pmatrix},\quad
+   \mathcal C_1 \sim \begin{pmatrix}
+    0 & -I & 0  & \cdots & 0 & 0 \\
+    0 & 0  & -I & \cdots & 0 & 0 \\
+    0 & 0  & 0 & \cdots & 0 & 0 \\
+    \vdots & \vdots & \vdots & \ddots & \vdots & \vdots \\
+    0 & 0 & 0 & \cdots & 0 & -I \\
+    C_N & C_{N-1} & C_{N-2} & \cdots & C_2 & C_1
+   \end{pmatrix}.
+\]
+
+Введём в рассмотрение операторнозначную функцию $H \colon \groupt \to \End X$:
+\[ H(\gamma) = \gamma^N C_0 + \gamma^{N-1} C_1 + \dotsc + C_N, \quad \gamma \in \groupt = \menge{\lambda \in \fieldc : \absv{\lambda} = 1}. \]
+Эту функцию назовём \emph{характеристической функцией} оператора $ \mathcal A$. Множество $\rho(H)$, состоящее из таких $\gamma \in \groupt$, что оператор $H(\gamma)$ обратим, назовём \emph{резольвентным множеством} функции $H$, а дополнение к нему, $s(H) = \groupt \setminus \rho(H)$ --- \emph{сингулярным множеством} этой функции.
+
+\begin{theorem}
+    Разностный оператор $\mathcal A$ с постоянными коэффициентами $C_i$, $i = \overline{0,N}$,обратим тогда и только тогда, когда сингулярное множество $s(H)$ его характеристической функции пусто. Если $s(H) = \varnothing$, то обратный оператор $\mathcal A^{-1} \in \End l^p$ представим в виде
+    \begin{equation}\label{eq:invconst}
+     (\mathcal A^{-1} x)(k) = (G * x)(k)= \sum_{n \in \groupz} G(k - n) x(n), \quad k \in \groupz, \; x \in l^p.
+    \end{equation}
+    Функция $G$ принадлежит банаховой алгебре $l^1(\groupz, \End Y)$ (со свёрткой функций в качестве умножения) и допускает представление вида
+    \[ G(n) = \frac{1}{2 \pi} \int_{\groupt} (H(\gamma))^{-1} \gamma^n \dd \gamma, \quad n \in \groupz. \]
+\end{theorem}
+
+\begin{proof}
+    Разностный оператор первого порядка $\mathbb A$ с постоянными коэффициентами обратим тогда и только тогда, когда сингулярное множество его характеристической функции $\mathcal H(\gamma) = \gamma \mathcal C_0 + \mathcal C_1$ пусто (иначе говоря, спектр линейного операторного пучка не содержит точек единичной окружности) \cite[теорема 3]{Bas01}.
+    Запишем матрицу оператора $\mathcal H(\gamma)$:
+
+    \[ \mathcal H(\gamma) \sim \begin{pmatrix}
+    \gamma I & -I & 0  & \cdots & 0 & 0 \\
+    0 & \gamma I  & -I & \cdots & 0 & 0 \\
+    0 & 0  & \gamma I & \cdots & 0 & 0 \\
+    \vdots & \vdots & \vdots & \ddots & \vdots & \vdots \\
+    0 & 0 & 0 & \cdots & \gamma I & -I \\
+    C_N & C_{N-1} & C_{N-2} & \cdots & C_2 & \gamma C_0 + C_1
+   \end{pmatrix}.\]
+   Из теоремы \ref{th:main_abstract} следует, что состояния обратимости операторов $\mathcal H(\gamma)$ и $H(\gamma)$ совпадают. Значит $s(H) \hm= s(\mathcal H)$. Отсюда получаем первое утверждение теоремы.
+
+   Заметим, что $G(n)$ представляют собой коэффициенты Фурье функции $(H(\gamma))^{-1}$, которая является голоморфной в окрестности единичной окружности как резольвента полиномиального операторного пучка. Следовательно, её ряд Фурье сходится абсолютно, откуда и следует, что $G \hm\in l^1(\groupz, \End Y)$. Благодаря этому, оператор $\mathcal A^{-1}$, задаваемый формулой \eqref{eq:invconst}, определен корректно. Непосредственная проверка показывает, что этот оператор является обратным к оператору $\mathcal A$.
+\end{proof}
+
+\begin{comment}
+ Покажем, что $ D^{-1}$ в самом деле является обратным.
+
+   Правый обратный:
+   \begin{align*}
+    ( {D D}^{-1}x)(k) &= \sum_{i=0}^N C_i ( D^{-1} x)(k + N - i) = 
+    \sum_{i=0}^N C_i (G * x)(k + N - i) = \sum_{i=0}^N C_i \left(\sum_{n \in \groupz} G(k+N-i-n) x(n)\right) = \\ &= \sum_{n \in \groupz} \left( \sum_{i = 0}^N C_i G(k + N - i - n) \right) x(n);
+   \end{align*}
+   \begin{align*}
+    \sum_{i = 0}^N C_i G(k + N - i - n) &= \sum_{i=0}^N C_i \left( \int_{\groupt} (H(\gamma))^{-1} \gamma^{k + N - i - n} \dd \gamma \right) = \int_{\groupt} \sum_{i=0}^N C_i (H(\gamma))^{-1} \gamma^{k + N - i - n} \dd \gamma = \\ &= \int_{\groupt} \left(\sum_{i=0}^N \gamma^{N - i} C_i   \right) (H(\gamma))^{-1} \gamma^{k - n} \dd \gamma = \int_{\groupt} \gamma^{k-n} \dd \gamma = \delta_{nk};
+   \end{align*}
+   Значит,
+   \[ ( {D D}^{-1}x)(k) = x(k) \]
+
+   Левый обратный:
+   \begin{align*}
+    ({D}^{-1}  D x)(k) &= \sum_{n \in \groupz} G(k - n) ({D}x)(n) =
+     \sum_{n \in \groupz} G(k - n) \left(\sum_{i=0}^N C_i x(n + N - i) \right) =
+     \sum_{n \in \groupz} \sum_{i=0}^N  G(k - n) C_i x(n + N - i) = \\ &=
+     \sum_{n \in \groupz} \sum_{i=0}^N G(k - n + N - i) C_i x(n) = \sum_{n \in \groupz}
+     \left( \sum_{i=0}^N G(k + N - i - n) C_i \right) x(n) = x(k).
+   \end{align*}
+\end{comment}
+
+\begin{assumption}\label{assum:bounded}
+    Все решения однородного разностного уравнения
+    \begin{equation}\label{eq:homogeneous}
+        x(k + N) + C_1 x(k + N - 1) + \dotsc + C_N x(k) = 0,
+    \end{equation}
+    рассматриваемого на $\groupz_+$ ограничены.
+\end{assumption}
+
+В условиях предположения \ref{assum:bounded} любое решение $x \in l^\infty(\groupz_+, Y)$ однородного уравнения удовлетворяет равенствам
+\[
+\begin{pmatrix}
+x(n) \\
+x(n + 1) \\
+\vdots \\
+x(n + N - 2) \\
+x(n + N - 1)
+\end{pmatrix}
+=
+\begin{pmatrix}
+    0 & I  & \cdots & 0 & 0 \\
+    0 & 0  & \cdots & 0 & 0 \\
+    \vdots & \vdots & \ddots & \vdots & \vdots \\
+    0 & 0 & \cdots & 0 & I \\
+    -C_N & -C_{N-1} & \cdots & -C_2 & -C_1
+   \end{pmatrix}^n
+   \begin{pmatrix}
+    x(0) \\
+    x(1) \\
+    \vdots \\
+    x(N - 2) \\
+    x(N - 1)
+   \end{pmatrix}.
+   \]
+
+Тогда из ограниченности всех решений однородного уравнения и теоремы Банаха\-Штейнгауза следует, что
+\[ \sup_{n\geq 0} \norm{\mathcal C_1^n} = M(\mathcal C_1) < \infty.\]
+Следовательно, спектральный радиус оператора $\mathcal C_1$ не превосходит единицы, т.е.
+\[ \spectrum{\mathcal C_1} \subset \menge{\lambda \in \fieldc : \absv{\lambda} \geq 1}. \]
+
+Теперь можно применить результат из \cite[теорема 1]{Bas15}:
+\begin{theorem}\label{th:asymptotic}
+    Пусть выполнены условия предположения \ref{assum:bounded} и 
+    \[ \spectrum{\mathcal C_1} \cap \groupt = \menge{\gamma_1, \dotsc, \gamma_m}.\] 
+    Тогда существуют операторнозначные функции $A_k \in l^\infty(\groupz_+, \End{Y^N})$, $k = \overline{1,m}$, такие что для любого решения $x \colon \groupz_+ \to Y$ уравнения \ref{eq:homogeneous} имеют место следующие представления
+    \[ (x(n), x(n+1), \dotsc, x(n+N-1)) = \left(\sum_{k=1}^m \gamma_k^n A_k(n) \right) (x(0), x(1), \dotsc, x(N-1)), \quad n \in \groupz_+. \]
+    Функции $A_k$, $k = \overline{1,m}$ обладают следующими свойствами:
+    \begin{enumerate}
+    \item операторы $A_k(n) \in \End{Y^N}$, $n \in \groupz_+$ принадлежат наименьшей замкнутой подалгебре $\mathcal A_{\mathcal C_1}$ из $\End Y^N$, содержащей оператор $\mathcal C_1$;
+    \item $\lim_{n\to \infty} {\norm{A_k(n+1) - A_k(n)}} = 0$;
+    \item $\lim_{n\to \infty} {\norm{\mathcal C_1 A_k(n) - \gamma_k A_k(n)}} = 0$;
+    \item $\lim_{n\to \infty} {\norm{A_k(n) A_j(n)}} = 0$ для $k \neq j$, $k, j = \overline{1,m}$.
+    \end{enumerate}
+\end{theorem}
+
+В заключение отметим, что основные результаты статьи (теоремы 1-5) имеют место
+для разностных операторов, действующих в весовых пространствах
+последовательностей векторов (см. статьи \cite{Bic10}, \cite{Bic13}, \cite{Bic14}).
