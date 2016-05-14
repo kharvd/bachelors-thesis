@@ -1,4 +1,4 @@
-\documentclass[a4paper,bachelor,href]{disser}
+\documentclass[a4paper,bachelor,href,draft]{disser}
 \usepackage{mystyle}
 
 \institution{МИНОБРНАУКИ РОССИИ\\
@@ -13,7 +13,7 @@
 % Имя лица, допускающего к защите (зав. кафедрой)
 \apname{д.~ф.-м.~н., профессор Задорожний В.~Г.}
 % Научный руководитель
-\sa      {д.~ф.-м.~н., профессор Баскаков А.~Г.}
+\sa{д.~ф.-м.~н., профессор Баскаков А.~Г.}
 
 \title{Бакалаврская работа}
 
@@ -30,6 +30,8 @@
 \city{Воронеж}
 \date{\number\year}
 
+\addbibresource{thesis.bib}
+
 \begin{document}
 \maketitle
 \tableofcontents
@@ -37,4 +39,10 @@
 \input{tex/intro}
 \input{tex/proof}
 \input{tex/fredholm}
+
+% Список литературы
+%\nchapter{Список литературы}
+\printbibliography[heading=bibintoc]
+
+
 \end{document}

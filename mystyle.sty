@@ -3,6 +3,19 @@
 \usepackage[T2A]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage[english,russian]{babel}
+
+% Undefining bibfont from disser class
+\let\bibfont\undefined
+
+\usepackage[autolang=other,
+            bibencoding=utf8,
+            sorting=none, % Name,Title,Year или sorting=none.
+            maxbibnames=4, % Максимальное число авторов в списке литературы.
+            minbibnames=2, % Число авторов, отображаемое при сокращении.
+            style=gost-numeric,
+            hyperref=true,
+            backend=biber]{biblatex}
+
 \usepackage{amsmath}
 \usepackage{mathtools}
 \usepackage{amssymb}
@@ -13,8 +26,15 @@
 \usepackage{verbatim}
 \usepackage{enumitem}
 \usepackage{calrsfs}
+\usepackage{csquotes}
+
 
 \usepackage{title}
+
+\usepackage[
+  a4paper,
+  left=3cm, right=1cm, top=2cm, bottom=2cm
+]{geometry}
 
 \makeatletter \renewenvironment{proof}[1][\proofname] {\par\pushQED{\qed}\normalfont\topsep6\p@\@plus6\p@\relax\trivlist\item[\hskip\labelsep\bfseries#1\@addpunct{.}]\ignorespaces}{\popQED\endtrivlist\@endpefalse} \makeatother
 
@@ -78,3 +98,7 @@
 
 \newcommand*{\hm}[1]{#1\nobreak\discretionary{}%
 {\hbox{\mathsurround=0pt \ensuremath{#1}}}{}}
+
+% Workaround for a bug in biblatex
+\NewBibliographyString{langjapanese}
+\NewBibliographyString{fromjapanese}
