@@ -1,0 +1,54 @@
+\def\profile#1{\gdef\@profile{#1}}
+
+\renewcommand\diplomafield[1]{%
+  \makebox[\fieldhshift][l]{\hrulefill\ \titlepagefont #1}
+}
+
+\renewcommand\@approved{%
+Допущено к защите в ГЭК \hspace{1cm} \makebox[0.5cm][r]{\hrulefill}.\makebox[0.5cm][r]{\hrulefill}.\@date%
+}
+
+\if@titlepage\renewcommand\maketitle[1][]{
+\ifundeflength\firstskip{1.5cm}
+\ifundeflength\secondskip{1em}
+\ifundeflength\thirdskip{2cm}
+
+\setlength\fieldhshift{12cm}
+
+\def\titlepagefont{\sffamily\small\setstretch{1.0}}
+\def\topicfont{\titlepagefont\itshape}
+
+\thispagestyle{empty}
+\enlargethispage{1cm}
+\vspace*{-2.5cm}
+
+\begin{center}%
+  {\titlepagefont\@institution}
+\end{center}
+
+\vskip\firstskip
+
+\begin{center}%
+  {\topicfont\@topic\par}
+  \vskip\secondskip%
+  {\titlepagefont\@title}\\
+  {\titlepagefont Направление\ \@coursenum~\ \@course}\\
+  {\titlepagefont Профиль\ \@profile}
+\end{center}
+
+\vskip\thirdskip%
+
+\begin{tabbing}
+  \titlepagefont\@approved\\
+  \titlepagefont Зав. кафедрой \=\diplomafield{\@apname}\\
+  \titlepagefont Обучающийся\>\diplomafield{\@author}\\
+  \titlepagefont Руководитель\>\diplomafield{\@sa}
+\end{tabbing}
+
+\vfill
+
+\begin{center}
+  {\titlepagefont\@city\cdsep\@date}
+\end{center}
+\normalfont\clearpage
+}\fi
