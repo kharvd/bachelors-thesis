@@ -12,6 +12,10 @@ install : all
 clean :
 	-rm -f $(CLEXT)
 
+nobib : $(TARGET).tex tex/*.tex *.sty *.bib
+	$(TEX) $(TARGET).tex
+	$(TEX) $(TARGET).tex
+
 $(TARGET).pdf : $(TARGET).tex tex/*.tex *.sty *.bib
 	$(TEX) $(TARGET).tex
 	$(BIBER) $(TARGET).bcf

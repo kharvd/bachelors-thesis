@@ -10,7 +10,8 @@
 где $A, C_0, \dotsc, C_N \in \End X, N \in \mathbb{N}$, назовём \emph{операторным полиномом} (порядка $N$ с операторными коэффициентами $C_i$, $i = \overline{1,N}$, разложенным по степеням оператора $A$).
 
 Наряду с оператором $\mathcal A$ рассмотрим оператор $\mathbb A \in \End X^{N}$, заданный матрицей вида
-\[ \mathbb A \sim \begin{pmatrix}
+\[ \mathbb A \sim
+    \begin{pmatrix}
     A & -I & 0  & \cdots & 0 & 0 \\
     0 & A  & -I & \cdots & 0 & 0 \\
     0 & 0  & A & \cdots & 0 & 0 \\
@@ -98,13 +99,17 @@
         (\mathbb A^{-1})_{i,N} &= A^{i-1} \mathcal A^{-1}, &\quad i = \overline{1,N},
         \end{aligned}\\
         D_j = \mathcal A^{-1} \sum_{k = 0}^{N-j} C_k A^{N-k-j}, \quad i = \overline{1,N},\\[0.5em]
-        \mathbb A^{-1} \sim \begin{pmatrix}
+        \mathbb A^{-1} \sim
+        \begingroup
+        \renewcommand*{\arraycolsep}{3pt}
+        \begin{pmatrix}
           D_1 &  D_2 &  \cdots & D_{N-1} &  \mathcal A^{-1} \\
           A D_1 - I & A D_2 & \cdots & A D_{N-1} & A  \mathcal A^{-1} \\
           A^2 D_1 - A & A^2 D_2 - I & \cdots & A^2 D_{N-1} & A^2 \mathcal A^{-1} \\
           \vdots & \vdots & \ddots & \vdots & \vdots \\
           A^{N-1} D_1 - A^{N-2} & A^{N-1} D_2 - A^{N-3} & \cdots & A^{N-1} D_{N-1} - I & A^{N-1}  \mathcal A^{-1}
-       \end{pmatrix}.
+       \end{pmatrix}
+       \endgroup.
     \end{gather*}
 \end{theorem}
 
@@ -168,11 +173,11 @@ C_0(k) x(k + N) + C_1(k) x(k + N - 1) + \dotsc + C_{N}(k) x(k) = f(k), \quad k \
 \end{equation}
 где $\mathbb S \in \End l^p(\groupz; Y^n)$ --- оператор сдвига в $l^p(\groupz; Y^n)$, $\mathbb A_0, \mathbb A_1 \in \End l^p(\groupz; Y^n)$ --- операторы умножения на функции $\mathcal C_0$ и $\mathcal C_1$ соответственно.
 
-Согласно терминологии статьи \cite{bohr2005}, разностный оператор \eqref{eq:difference_short} является оператором с двухточечным спектром Бора. Поэтому к нему применимы полученные в статье результаты об обратимости, представлении обратных (используя понятие экспоненциальной дихотомии). Имеют место оценки норм обратных операторов.
+Согласно терминологии статьи \cite{bohr2005}, разностный оператор \ref{eq:difference_short} является оператором с двухточечным спектром Бора. Поэтому к нему применимы полученные в статье результаты об обратимости, представлении обратных (используя понятие экспоненциальной дихотомии). Имеют место оценки норм обратных операторов.
 
 При получении результатов статьи \cite{bohr2005} существенно использовалась (особенно в случае необратимого оператора $\mathbb A_0$) спектральная теория линейных отношений (\cite{relations2002, relations2008}). Теория разностных операторов первого порядка развивалась в работах \cite{antonevich2,antonevich,kurbatov,kurbatov2,massera,henri,megan,dorogovtsev,chicone,inverse1992,memory2014,green2015,BasDup15,BasPas01,Bas00,Bas13,Bas15,Bic10,Bic13,Bic14}.
 
-Из представлений \eqref{eq:d_def}, \eqref{eq:difference_short} разностных операторов $\mathcal A \in \End l^p(\groupz; Y)$, $\mathbb A \in \End l^p(\groupz; Y^N)$ и теорем \ref{th:main_abstract}, \ref{th:inverse}, \ref{th:abstract_fredholm} следует
+Из представлений \labelcref{eq:d_def,eq:difference_short} разностных операторов $\mathcal A \in \End l^p(\groupz; Y)$, $\mathbb A \in \End l^p(\groupz; Y^N)$ и теорем \labelcref{th:main_abstract,th:inverse,th:abstract_fredholm} следует
 \begin{theorem}\label{th:stinvdiff}
     Имеет место равенство
     \[ \Stinv \mathcal A = \Stinv \mathbb A. \]
@@ -183,11 +188,11 @@ C_0(k) x(k + N) + C_1(k) x(k + N - 1) + \dotsc + C_{N}(k) x(k) = f(k), \quad k \
     \end{gather*}
 \end{theorem}
 
-Следующее утверждение следует из результатов статей \cite{inverse1992}, \cite{memory2014}.
+Следующее утверждение следует из результатов статей \cite{inverse1992,memory2014}.
 \begin{theorem}\label{th:inverseall}
     Если разностный оператор $\mathcal A$ обратим в одном из банаховых пространств $l^p(\groupz; Y)$, $1 \leq p \leq \infty$, то он обратим в любом из этих пространств. В частности, спектр $\spectrum{\mathcal{A}}$ оператора $\mathcal A$ не зависит от пространства $l^p$, в котором он определен.
 \end{theorem}
 
-Оценки, полученные в \cite{green2015} для решений разностных включений, позволяют получить оценки для функции Грина в представлении оператора $\mathcal A^{-1}$. Аналоги теорем \ref{th:abstract_fredholm}, \ref{th:stinvdiff}, \ref{th:inverseall} имеют место для разностных операторов высокого порядка, рассматриваемых в пространствах односторонних последовательностей. Соответствующие результаты для разностных операторов первого порядка получены в статьях \cite{inverse1992,Bas13}.
+Оценки, полученные в \cite{green2015} для решений разностных включений, позволяют получить оценки для функции Грина в представлении оператора $\mathcal A^{-1}$. Аналоги теорем \labelcref{th:abstract_fredholm,th:stinvdiff,th:inverseall} имеют место для разностных операторов высокого порядка, рассматриваемых в пространствах односторонних последовательностей. Соответствующие результаты для разностных операторов первого порядка получены в статьях \cite{inverse1992,Bas13}.
 
 В \textsection \ref{sec:fredhlom} данной статьи получено (теорема \ref{th:fredholm_difference}) необходимое и достаточное условие фредгольмовости разностного оператора $\mathcal A \in \End l^p(\groupz; Y)$, $p \in [1, \infty]$ с $C_0(k) = I$ для всех $k \in \groupz$. Для разностного оператора с постоянными операторными коэффициентами $\widetilde{C_k} \in \End Y$, $0 \leq k \leq N$, приведена формула обратного. В теореме \ref{th:asymptotic} получено асимптотическое представление ограниченных решений однородного разностного уравнения.

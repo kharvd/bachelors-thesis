@@ -27,7 +27,7 @@
 \usepackage{enumitem}
 \usepackage{calrsfs}
 \usepackage{csquotes}
-
+\usepackage[russian]{cleveref}
 
 \usepackage{title}
 
@@ -98,6 +98,9 @@
 
 \newcommand*{\hm}[1]{#1\nobreak\discretionary{}%
 {\hbox{\mathsurround=0pt \ensuremath{#1}}}{}}
+
+% Smaller matrices
+\renewcommand*{\arraystretch}{0.7}
 
 % Workaround for a bug in biblatex
 \NewBibliographyString{langjapanese}
