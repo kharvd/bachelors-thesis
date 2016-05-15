@@ -1,4 +1,4 @@
-\section{Условия фредгольмовости разностного оператора}\label{sec:fredhlom}
+\chapter{Условия фредгольмовости разностных операторов}\label{sec:fredhlom}
 В этом параграфе получены необходимые и достаточные условия фредгольмовости разностного оператора вида \eqref{eq:d_def}, т.е. оператора
 \begin{gather*}
     \mathcal A \colon l^p  \to l^p, \\
@@ -177,7 +177,7 @@
 \[ H(\gamma) = \gamma^N C_0 + \gamma^{N-1} C_1 + \dotsc + C_N, \quad \gamma \in \groupt = \menge{\lambda \in \fieldc : \absv{\lambda} = 1}. \]
 Эту функцию назовём \emph{характеристической функцией} оператора $ \mathcal A$. Множество $\rho(H)$, состоящее из таких $\gamma \in \groupt$, что оператор $H(\gamma)$ обратим, назовём \emph{резольвентным множеством} функции $H$, а дополнение к нему, $s(H) = \groupt \setminus \rho(H)$ --- \emph{сингулярным множеством} этой функции.
 
-\begin{theorem}
+\begin{theorem}\label{th:constant_inverse}
     Разностный оператор $\mathcal A$ с постоянными коэффициентами $C_i$, $i = \overline{0,N}$,обратим тогда и только тогда, когда сингулярное множество $s(H)$ его характеристической функции пусто. Если $s(H) = \varnothing$, то обратный оператор $\mathcal A^{-1} \in \End l^p$ представим в виде
     \begin{equation}\label{eq:invconst}
      (\mathcal A^{-1} x)(k) = (G * x)(k)= \sum_{n \in \groupz} G(k - n) x(n), \quad k \in \groupz, \; x \in l^p.

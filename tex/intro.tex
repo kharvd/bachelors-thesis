@@ -1,198 +1,24 @@
 \intro
+\section*{О содержании и структуре работы}
+Из курса дифференциальных и разностных уравнений известен метод приведения уравнения $N$-ого порядка к системе из $N$ уравнений первого порядка. В данной работе рассматривается обобщение этого метода для исследования операторных полиномов с коэффициентами из банахова пространства. Исследование спектральных свойств операторных полиномов сводится к изучению спектральных свойств оператора, заданного операторной матрицей. Полученные результаты (теоремы \labelcref{th:main_abstract,th:inverse,th:abstract_fredholm}) применяются к разностным операторам высокого порядка. Получены условия их обратимости, фредгольмовости (теоремы \labelcref{th:stinvdiff,th:fredholm_difference,th:constant_inverse}), асимптотическое представление ограниченных решений однородного разностного уравнения (теорема \labelcref{th:asymptotic}).
 
-\chapter{О состояниях обратимости операторных полиномов}
-\section{Основные понятия и формулировки теорем}
-%\section{Введение. Основные результаты}
-Пусть $X$, $Y$ --- комплексные банаховы пространства, $\Hom(X, Y)$ --- банахово пространство линейных ограниченных операторов (гомоморфизмов), определенных на $X$ со значениями в $Y$, $\End X = \Hom(X, X)$ --- банахова алгебра эндоморфизмов пространства $X$.
+Работа состоит из введения, трёх глав и заключения.
 
-Линейный оператор $ \mathcal A \in \End X$, вида
-\[  \mathcal A = C_0 A^N + C_1 A^{N - 1} + \dotsc + C_N, \]
-где $A, C_0, \dotsc, C_N \in \End X, N \in \mathbb{N}$, назовём \emph{операторным полиномом} (порядка $N$ с операторными коэффициентами $C_i$, $i = \overline{1,N}$, разложенным по степеням оператора $A$).
+Во введении дается общая характеристика работы.
 
-Наряду с оператором $\mathcal A$ рассмотрим оператор $\mathbb A \in \End X^{N}$, заданный матрицей вида
-\[ \mathbb A \sim
-    \begin{pmatrix}
-    A & -I & 0  & \cdots & 0 & 0 \\
-    0 & A  & -I & \cdots & 0 & 0 \\
-    0 & 0  & A & \cdots & 0 & 0 \\
-    \vdots & \vdots & \vdots & \ddots & \vdots & \vdots \\
-    0 & 0 & 0 & \cdots & A & -I \\
-    C_N & C_{N-1} & C_{N-2} & \cdots & C_2 & C_0 A + C_1
-   \end{pmatrix}, \]
-т. е. для $x \in X^{N}$, $x = (x_1, \dotsc, x_{N})$, вектор $\mathbb A x = y = (y_1, \dotsc, y_{N})$ определяется равенствами:
-\begin{align*}
-    y_k &= Ax_k - x_{k + 1}, \quad k = \overline{1,N-1}, \\
-    y_{N} &= C_0 A x_N + \sum_{k = 1}^{N} C_k x_{N - k + 1} = C_0 A x_N + \sum_{j = 1}^{N} C_{N - j + 1} x_{j}.
-\end{align*}
+В первой главе приводятся основные определения и понятия, используемые в работе.
 
-Оператор $\mathbb A$ можно представить в виде
-\[ \mathbb A = \mathbb A_0 \mathbb S + \mathbb A_1, \]
-где операторы $\mathbb A_0$, $\mathbb S$, $\mathbb A_1 \in \End X^N$ определяются соответственно матрицами
-\begin{gather*}
-    \mathbb A_0 \sim \begin{pmatrix}
-    I & 0 & \cdots &  0 \\
-    0 & I  & \cdots &  0 \\
-    \vdots & \vdots & \ddots &  \vdots \\
-    0 & 0 & \cdots &  C_0
-   \end{pmatrix}, \quad
-   \mathbb S \sim \begin{pmatrix}
-    A & 0 & \cdots &  0 \\
-    0 & A  & \cdots &  0 \\
-    \vdots & \vdots & \ddots &  \vdots \\
-    0 & 0 & \cdots & A
-   \end{pmatrix} \\
-   \mathbb A_1 \sim \begin{pmatrix}
-    0 & -I & 0  & \cdots & 0 & 0 \\
-    0 & 0  & -I & \cdots & 0 & 0 \\
-    0 & 0  & 0 & \cdots & 0 & 0 \\
-    \vdots & \vdots & \vdots & \ddots & \vdots & \vdots \\
-    0 & 0 & 0 & \cdots & 0 & -I \\
-    C_N & C_{N-1} & C_{N-2} & \cdots & C_2 & C_1
-   \end{pmatrix}.
-\end{gather*}
+Во второй главе формулируются основные результаты работы и приводятся их доказательства.
 
-\begin{definition}\label{def:stinv}
-    Пусть $B \in \Hom(X_1, X_2)$ --- линейный ограниченный оператор между банаховыми пространствами $X_1$, $X_2$. Рассмотрим следующий набор его возможных свойств.
-    \begin{enumerate}[label={\arabic*)}]
-        \setlength\itemsep{0em}
-        \item $\ker B = \menge{x \in X_1 : Bx = 0} = \menge{0}$, т. е. $B$ --- инъективный оператор;
-        \item $1 \leq n = \dim \ker B < \infty$ (ядро конечномерно);
-        \item $\ker B$ --- бесконечномерное подпространство в $X_1$;
-        \item $\ker B$ --- дополняемое подпространство в $X_1$;
-        \item $\overline{\im B} = \im B$ --- образ оператора $B$ замкнут в $X_2$, что эквивалентно положительности величины (называемой минимальным модулем оператора $B$)
-        \[ \gamma(B) = \inf_{x \in X_1 \setminus \ker B} \frac{\norm{Bx}}{\dist (x, \ker B)}, \]
-        где $\dist (x, \ker B) = \inf\limits_{x_0 \in \ker B} \norm{x - x_0}$ --- расстояние от вектора $x$ до подпространства $\ker B$;
-        \item оператор $B$ равномерно инъективен (корректен), т. е. $\ker B = \menge{0}$ и $\gamma(B) > 0$;
-        \item $\im B$ --- замкнутое подпространство в $X_2$ конечной коразмерности
-        \[ 1 \leq \codim \im B = \dim X_2 / \im B < \infty; \]
-        \item $\im B$ --- замкнутое подпространство в $X_2$ бесконечной коразмерности;
-        \item $\im B \neq X_2$, $\overline{\im B} = X_2$ (образ оператора $B$ плотен в $X_2$, но не совпадает со всем $X_2$);
-        \item $\overline{\im B} \neq X_2$ (образ $B$ не плотен в $X_2$);
-        \item $\im B = X_2$ (оператор $B$ сюръективен);
-        \item оператор $B$ обратим (т. е. $\ker B = \menge{0}$ и $\im B = X_2$).
-    \end{enumerate}
-    Если для оператора $B$ одновременно выполнены все условия из совокупности условий $\sigma \hm= \menge{i_1, \dotsc, i_k}$, где $1 \leq i_1 < \dotsc < i_k \leq 12$, то будем говорить, что оператор $B$ \emph{находится в состоянии обратимости} $\sigma$. Множество всех состояний обратимости оператора $B$ обозначим символом $\Stinv B$.
-\end{definition}
+В третьей главе основные результаты используются для исследования условий обратимости и фредгольмовости разностных операторов.
 
-\begin{definition}
-Если оператор $B \in \Hom(X_1, X_2)$ имеет конечномерное ядро (выполнено одно из условий 1), 2) определения \ref{def:stinv}) и замкнутый образ конечной коразмерности (одно из условий 7), 11)), то оператор $B$ называется \emph{фредгольмовым}. Если оператор $B$ имеет замкнутый образ и конечно хотя бы одно из чисел $\dim \ker B$, $\codim \im B = \dim X_2 / \im B$, то оператор $B$ называется \emph{полуфредгольмовым}. Число $\ind B = \dim \ker B - \codim \im B$ называется \emph{индексом} фредгольмова (полуфредгольмова) оператора $B$.
-\end{definition}
+В заключении описаны возможные направления дальнейших исследований на данную тему.
 
-Аналогичное определение даётся для замкнутых операторов, а также для линейных отношений.
-Благодаря введенному понятию состояний обратимости оператора, становится возможна более тонкая и разнообразная, чем общепринятая (см. \cite{dunford}), классификация спектров линейных операторов.
+\section*{История исследований}
+Приводимая в работе конструкция перехода от изучения исходного операторного полинома $\mathcal A = C_0 A^N + C_1 A^{N - 1} + \dotsc + C_N \in \End X$ к изучению матричного оператора $\mathbb A \in \End X^N$, является непосредственным обобщением известного из курсов дифференциальных и разностных уравнений приёма сведения дифференциального или разностного уравнения $N$-ого порядка к системе из $N$ дифференциальных (разностных) уравнений. Для более специальных классов операторных полиномов аналог теоремы \ref{th:inverse} получен в монографиях А. Б. Антоневича \cite[теорема 9.1]{antonevich2}, \cite{antonevich}.
 
-Одним из основных результатов статьи является
-\begin{theorem}\label{th:main_abstract}
-    Множества состояний обратимости операторов $ \mathcal A \in \End{X}$ и $\mathbb A \in \End{X^{N}}$ совпадают:
-    \[ \Stinv{\mathcal A} = \Stinv{\mathbb A}. \]
-\end{theorem}
-Это равенство (содержащее множество утверждений) означает, что если одно из двенадцати условий определения \ref{def:stinv} выполняется для одного из операторов $ \mathcal A$, $\mathbb A$, то оно выполняется и для другого.
+Теория разностных операторов первого порядка развивалась в~работах \cite{antonevich2,antonevich,kurbatov,kurbatov2,massera,henri,megan,dorogovtsev,chicone,inverse1992,memory2014,green2015,BasDup15,BasPas01,Bas00,Bas13,Bas15,Bic10,Bic13,Bic14}.
 
-Теорема \ref{th:main_abstract} позволяет свести исследование свойств оператора $\mathcal A \in \End{X}$, связанных с обратимостью, к исследованию соответствующих свойств оператора $\mathbb A$, который в важных частных случаях изучен. В первую очередь это относится к разностным операторам первого порядка.
+Понятие состояний обратимости используется, в частности, в статье \cite{Bas13}.
 
-\begin{theorem}\label{th:inverse}
-    Пусть оператор $\mathcal A$ обратим. Тогда обратим и операторы $\mathbb A \in \End X^N$ и обратный $\mathbb A^{-1}$ имеет матрицу $(\mathbb A^{-1})_{ij}$, $1 \leq i, j \leq N$ вида:
-    \begin{gather*}
-        \begin{aligned}
-        (\mathbb A^{-1})_{ij} &= A^{i-1} D_j - A^{i-j-1}, &\quad i > j, \; j = \overline{1,N-1}, \\
-        (\mathbb A^{-1})_{ij} &= A^{i-1} D_j, &\quad i \leq j, \; j = \overline{1,N-1}, \\
-        (\mathbb A^{-1})_{i,N} &= A^{i-1} \mathcal A^{-1}, &\quad i = \overline{1,N},
-        \end{aligned}\\
-        D_j = \mathcal A^{-1} \sum_{k = 0}^{N-j} C_k A^{N-k-j}, \quad i = \overline{1,N},\\[0.5em]
-        \mathbb A^{-1} \sim
-        \begingroup
-        \renewcommand*{\arraycolsep}{3pt}
-        \begin{pmatrix}
-          D_1 &  D_2 &  \cdots & D_{N-1} &  \mathcal A^{-1} \\
-          A D_1 - I & A D_2 & \cdots & A D_{N-1} & A  \mathcal A^{-1} \\
-          A^2 D_1 - A & A^2 D_2 - I & \cdots & A^2 D_{N-1} & A^2 \mathcal A^{-1} \\
-          \vdots & \vdots & \ddots & \vdots & \vdots \\
-          A^{N-1} D_1 - A^{N-2} & A^{N-1} D_2 - A^{N-3} & \cdots & A^{N-1} D_{N-1} - I & A^{N-1}  \mathcal A^{-1}
-       \end{pmatrix}
-       \endgroup.
-    \end{gather*}
-\end{theorem}
-
-Приводимая конструкция перехода от изучения исходного операторного полинома $\mathcal A = C_0 A^N + C_1 A^{N - 1} + \dotsc + C_N \in \End X$ к изучению оператора $\mathbb A \in \End X^N$, является непосредственным обобщением известного из курсов дифференциальных и разностных уравнений приёма сведения дифференциального или разностного уравнения $N$-ого порядка к системе из $N$ дифференциальных (разностных) уравнений. Для более специальных классов операторных полиномов аналог теоремы \ref{th:inverse} получен в монографиях А. Б. Антоневича \cite[теорема 9.1]{antonevich2}, \cite{antonevich}.
-
-Непосредственно из теоремы \ref{th:main_abstract} следует
-\begin{theorem}\label{th:abstract_fredholm}
-    Оператор $\mathcal A$ фредгольмов (полуфредгольмов) тогда и только тогда, когда фредгольмовым (полуфредгольмовым) является оператор $\mathbb A$. При условии фредгольмовости одного из них
-    \begin{gather*}
-    \dim \ker \mathcal A = \dim \ker \mathbb A, \quad \dim \im \mathcal A = \codim \im \mathbb A, \\
-    \ind \mathcal A = \ind \mathbb A.
-    \end{gather*}
-\end{theorem}
-
-Далее символом $l^p = l^p(\groupz; Y)$, $1 \leq p \leq \infty$ обозначим банахово пространство суммируемых со степенью $p$ (ограниченных при $p = \infty$) двусторонних последовательностей векторов из банахова пространства $Y$. Нормы в этих пространствах определяются равенствами:
-\begin{align*}
-    \norm{x} = \norm{x}_p = \left(\sum_{n \in \groupz} \norm{x(n)}^p\right)^{1/p}, \quad &x \in l^p, \; p \in [1, \infty), \\
-    \norm{x} = \norm{x}_\infty = \sup_{n\in \groupz} \norm{x(n)}, \quad &x \in l^\infty.
-\end{align*}
-\indent В банаховом пространстве $l^p$ рассмотрим разностное уравнение $N$-ого порядка:
-\begin{equation}\label{eq:difference_nth}
-C_0(k) x(k + N) + C_1(k) x(k + N - 1) + \dotsc + C_{N}(k) x(k) = f(k), \quad k \in \groupz, \; x \in l^p,
-\end{equation}
-где $f \in l^p$, а $C_i \colon \groupz \to \End Y$, $i = \overline{0,N}$ --- ограниченные операторнозначные функции, т. е. $C_i \in l^\infty(\groupz; \End Y)$. Через $S$ обозначим оператор сдвига последовательностей из $l^p$: $S \in \End l^p$, $(Sx)(k) = x(k + 1)$, $k \in \groupz$, $x \in l^p$. Тогда уравнение \eqref{eq:difference_nth} можно записать в операторном виде:
-\[  \mathcal A x = f, \]
-где разностный оператор $ \mathcal A \in \End l^p$ определяется формулой
-\begin{equation}\label{eq:d_def}
-\mathcal A = \widetilde{C_0} S^N + \widetilde{C_1} S^{N - 1} + \dotsc + \widetilde{C_N}.
-\end{equation}
-Операторы $\widetilde{C_i} \in \End l^p$, $i = \overline{0,N}$ есть операторы умножения на операторную функцию $C_i$:
-\[ (\widetilde{C_i}x)(k) = C_i(k)x(k), \quad k \in \groupz, \; x \in l^p, \; k = \overline{0,N}. \]
-
-Используя приём, описанный выше для операторных полиномов, построим по оператору $\mathcal A$ оператор $\mathbb A \in \End l^p(\groupz; Y^N)$. При этом учитывается канонический изоморфизм пространств $l^p(\groupz; Y)^N$ и $l^p(\groupz; Y^N)$.
-
-Оператор $\mathbb A$ является разностным оператором первого порядка в пространстве $l^p(\groupz; Y^N)$ и задаётся равенством
-\begin{equation}\label{eq:difference_first_order}
-(\mathbb A x)(k) = \mathcal C_0(k) x(k + 1) + \mathcal C_1(k) x(k) , \quad k \in \groupz, \; x \in l^p(\groupz; Y^N),
-\end{equation}
-где
-\begin{gather*}
-   \mathcal C_0(k) \sim \begin{pmatrix}
-    I & 0 & \cdots &  0 \\
-    0 & I  & \cdots &  0 \\
-    \vdots & \vdots & \ddots &  \vdots \\
-    0 & 0 & \cdots &  C_0(k)
-   \end{pmatrix},\\
-   \mathcal C_1(k) \sim \begin{pmatrix}
-    0 & -I & 0  & \cdots & 0 & 0 \\
-    0 & 0  & -I & \cdots & 0 & 0 \\
-    0 & 0  & 0 & \cdots & 0 & 0 \\
-    \vdots & \vdots & \vdots & \ddots & \vdots & \vdots \\
-    0 & 0 & 0 & \cdots & 0 & -I \\
-    C_N(k) & C_{N-1}(k) & C_{N-2}(k) & \cdots & C_2(k) & C_1(k)
-   \end{pmatrix},\\[0.5em]
-   x(k) = (x_1(k), x_2(k), \cdots, x_N(k)), \quad x_i \in l^p, \; i = \overline{1,N}.
-\end{gather*}
-
-Итак, оператор $\mathbb A$ записывается в виде
-\begin{equation}\label{eq:difference_short}
-    \mathbb A = \mathbb A_0 \mathbb S + \mathbb A_1,
-\end{equation}
-где $\mathbb S \in \End l^p(\groupz; Y^n)$ --- оператор сдвига в $l^p(\groupz; Y^n)$, $\mathbb A_0, \mathbb A_1 \in \End l^p(\groupz; Y^n)$ --- операторы умножения на функции $\mathcal C_0$ и $\mathcal C_1$ соответственно.
-
-Согласно терминологии статьи \cite{bohr2005}, разностный оператор \ref{eq:difference_short} является оператором с двухточечным спектром Бора. Поэтому к нему применимы полученные в статье результаты об обратимости, представлении обратных (используя понятие экспоненциальной дихотомии). Имеют место оценки норм обратных операторов.
-
-При получении результатов статьи \cite{bohr2005} существенно использовалась (особенно в случае необратимого оператора $\mathbb A_0$) спектральная теория линейных отношений (\cite{relations2002, relations2008}). Теория разностных операторов первого порядка развивалась в работах \cite{antonevich2,antonevich,kurbatov,kurbatov2,massera,henri,megan,dorogovtsev,chicone,inverse1992,memory2014,green2015,BasDup15,BasPas01,Bas00,Bas13,Bas15,Bic10,Bic13,Bic14}.
-
-Из представлений \labelcref{eq:d_def,eq:difference_short} разностных операторов $\mathcal A \in \End l^p(\groupz; Y)$, $\mathbb A \in \End l^p(\groupz; Y^N)$ и теорем \labelcref{th:main_abstract,th:inverse,th:abstract_fredholm} следует
-\begin{theorem}\label{th:stinvdiff}
-    Имеет место равенство
-    \[ \Stinv \mathcal A = \Stinv \mathbb A. \]
-    В частности, оператор $\mathcal A$ фредгольмов тогда и только тогда, когда фредгольмов оператор $\mathbb A$. При условии фредгольмовости одного из них
-    \begin{gather*}
-    \dim \ker \mathcal A = \dim \ker \mathbb A, \quad \dim \im \mathcal A = \codim \im \mathbb A, \\
-    \ind \mathcal A = \ind \mathbb A.
-    \end{gather*}
-\end{theorem}
-
-Следующее утверждение следует из результатов статей \cite{inverse1992,memory2014}.
-\begin{theorem}\label{th:inverseall}
-    Если разностный оператор $\mathcal A$ обратим в одном из банаховых пространств $l^p(\groupz; Y)$, $1 \leq p \leq \infty$, то он обратим в любом из этих пространств. В частности, спектр $\spectrum{\mathcal{A}}$ оператора $\mathcal A$ не зависит от пространства $l^p$, в котором он определен.
-\end{theorem}
-
-Оценки, полученные в \cite{green2015} для решений разностных включений, позволяют получить оценки для функции Грина в представлении оператора $\mathcal A^{-1}$. Аналоги теорем \labelcref{th:abstract_fredholm,th:stinvdiff,th:inverseall} имеют место для разностных операторов высокого порядка, рассматриваемых в пространствах односторонних последовательностей. Соответствующие результаты для разностных операторов первого порядка получены в статьях \cite{inverse1992,Bas13}.
-
-В \textsection \ref{sec:fredhlom} данной статьи получено (теорема \ref{th:fredholm_difference}) необходимое и достаточное условие фредгольмовости разностного оператора $\mathcal A \in \End l^p(\groupz; Y)$, $p \in [1, \infty]$ с $C_0(k) = I$ для всех $k \in \groupz$. Для разностного оператора с постоянными операторными коэффициентами $\widetilde{C_k} \in \End Y$, $0 \leq k \leq N$, приведена формула обратного. В теореме \ref{th:asymptotic} получено асимптотическое представление ограниченных решений однородного разностного уравнения.
+В отличие от статьи \cite{BasDup15}, где изучались разностные операторы второго порядка, оператор $C_0$ из представления операторного полинома $\mathcal A$ может быть необратимым оператором. Случай необратимого оператора при старшей степени оператора $A$ позволяет получать аналоги теорем \labelcref{th:main_abstract,th:inverse,th:abstract_fredholm} для случая операторного полинома $\mathcal A$, где оператор $A$ --- замкнутый оператор с непустым резольвентным множеством (в частности, дифференциальный оператор). Следует отметить, что такой прием не применим к дифференциальным операторам второго порядка, рассматриваемых в статьях \cite{shkalikov,HryShk03}. В данной работе предложен иной (более простой) способ доказательства основных результатов статьи \cite{BasDup15}. Он состоит в сопоставлении операторному полиному порядка $N$ оператора $\widetilde{\mathbb A}$, заданного операторной матрицей порядка $N+1$, который имеет то же множество состояний обратимости.
