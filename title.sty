@@ -1,22 +1,26 @@
 \def\profile#1{\gdef\@profile{#1}}
+\def\apdate#1{\gdef\@apdate{#1}}
+\def\aptitle#1{\gdef\@aptitle{#1}}
+\def\satitle#1{\gdef\@satitle{#1}}
 
 \renewcommand\diplomafield[1]{%
   \makebox[\fieldhshift][l]{\hrulefill\ \titlepagefont #1}
 }
 
 \renewcommand\@approved{%
-Допущено к защите в ГЭК \hspace{1cm} \makebox[0.5cm][r]{\hrulefill} . \makebox[0.5cm][r]{\hrulefill} . \@date%
+Допущено к защите в ГЭК \hspace{1cm} \@apdate%
 }
 
 \if@titlepage\renewcommand\maketitle[1][]{
 \ifundeflength\firstskip{1.5cm}
 \ifundeflength\secondskip{1em}
 \ifundeflength\thirdskip{2cm}
+\ifundeflength\namesskip{1cm}
 
 \setlength\fieldhshift{12cm}
 
-\def\titlepagefont{\sffamily\small\setstretch{1.0}}
-\def\topicfont{\titlepagefont\itshape}
+\def\titlepagefont{\normalfont\small\setstretch{1.0}}
+\def\topicfont{\titlepagefont\large}
 
 \thispagestyle{empty}
 \enlargethispage{1cm}
@@ -39,16 +43,16 @@
 \vskip\thirdskip%
 
 \begin{tabbing}
-  \titlepagefont\@approved\\
-  \titlepagefont Зав. кафедрой \=\diplomafield{\@apname}\\
-  \titlepagefont Обучающийся\>\diplomafield{\@author}\\
-  \titlepagefont Руководитель\>\diplomafield{\@sa}
+  \titlepagefont\@approved\\[\namesskip]
+  \titlepagefont \pbox{\textwidth}{Зав. кафедрой\\\@aptitle} \quad \=\diplomafield{\@apname}\\[\namesskip]
+  \titlepagefont Обучающийся\>\diplomafield{\@author}\\[\namesskip]
+  \titlepagefont \pbox{\textwidth}{Научный руководитель\\\@satitle} \quad \>\diplomafield{\@sa}
 \end{tabbing}
 
 \vfill
 
 \begin{center}
-  {\titlepagefont\@city\cdsep\@date}
+  {\titlepagefont\@city\quad\@date}
 \end{center}
 \normalfont\clearpage
 }\fi
