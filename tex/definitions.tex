@@ -1,2 +1,366 @@
 \chapter{Основные понятия и определения}
-Основные понятия
+Пусть $X$ и $Y$ --- нормированные (векторные) пространства над полем $\fieldk \in \menge{\fieldr,\fieldc}$.
+
+\begin{definition}
+    Отображение $A \colon X \to Y$ из векторного пространства $X$ в векторное пространство $Y$
+    называется \emph{линейным оператором}, если
+    \[ A(\alpha x_1 + \beta x_2) = \alpha Ax_1 + \beta Ax_2, \quad \forall x_1,
+    x_2 \in X, \alpha, \beta \in \fieldk. \]
+\end{definition}
+
+Если $Y = \fieldk$, то вместо слова <<оператор>> говорят <<функционал>>.
+
+\begin{definition}
+    Оператор $A \colon X \to Y$ между нормированными пространствами 
+    называется \emph{ограниченным}, если величина
+    \[ \norm{A} = \sup_{\norm{x} \leq 1} \norm{Ax} \]
+    конечна. Эта величина, в таком случае, называется нормой оператора $A$.
+\end{definition}
+
+
+Можно показать, что все следующие определения нормы совпадают с данным выше:
+\begin{enumerate}
+    \item $ \norm{A} = \sup\limits_{\norm{x} < 1} \norm{Ax} $
+    \item $ \norm{A} = \sup\limits_{\norm{x} = 1} \norm{Ax} $
+    \item $ \norm{A} = \sup\limits_{x\neq 0}\displaystyle\frac{\norm{Ax}}{\norm{x}}; $
+    \item $ \norm{A} = \inf\menge{C \geq 0 : \forall x \in X \; \norm{Ax} \leq C
+        \norm{x}} $
+\end{enumerate}
+
+Нетрудно видеть, что $\norm{Ax} \leq \norm{A}\norm{x}$ для всех $x \in X$.
+
+Множество всех линейных ограниченных операторов между нормированными
+пространствами $X$ и $Y$ будем обозначать $\Hom(X, Y)$. Если $X = Y$, то, для краткости будем обозначать $\End X := \Hom(X, X)$.
+
+\begin{theorem}
+    $\Hom(X, Y)$ --- нормированное пространство.
+\end{theorem}
+
+\begin{definition}
+    Нормированное векторное пространство $X$ называется \emph{банаховым пространством}, если оно полно как метрическое пространство с метрикой $\rho(x, y) = \norm{x - y}$.
+\end{definition}
+
+\begin{definition}
+    Алгебру $\mathcal B$ называют \emph{банаховой алгеброй}, если она как линейное пространство является банаховым пространством, причем для всех $a, b \in \mathcal B$ 
+    \[ \norm{ab} \leq \norm{a}\norm{b}. \]
+    Если $\mathcal B$ при этом является алгеброй с единицей $e$, то требуют также, чтобы выполнялось свойство
+    \[ \norm{e} = 1. \]
+\end{definition}
+
+\begin{theorem}
+    Если $Y$ --- банахово пространство, то $\Hom(X, Y)$ --- банахово
+    пространство.
+\end{theorem}
+
+\begin{corollary}
+    Если $X$ --- банахово пространство, то $\End X$ --- банахова алгебра с единицей.
+\end{corollary}
+
+\begin{theorem}
+    Пусть $A$ --- линейный оператор. Тогда следующие условия эквивалентны:
+    \begin{enumerate}
+        \item $A$ --- непрерывное отображение;
+        \item $A$ --- непрерывное в точке $0$ отображение;
+        \item $A$ --- ограниченный оператор;
+        \item $A$ --- липшицево отображение.
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    Импликации $1 \Rightarrow 2$, и $4 \Rightarrow 1$ очевидны.
+    Докажем, что $2 \Rightarrow 3$.
+    Непрерывность $A$ означает, что
+    \[ \forall \varepsilon > 0 \; \exists \delta > 0 \; \forall x \in X: \; \norm{x} <
+    \delta \rightarrow \norm{Ax} < \varepsilon. \]
+    Зафиксируем некоторый $\varepsilon > 0$ и соответствующий ему $\delta$.
+    Тогда для любого $x \in X$, $\norm{x} \leq
+    1$, справедливо
+    \[ \norm{Ax} = \frac{2}{\delta} \norm{A\left( \frac{\delta}{2} x \right)}
+    \leq \frac{2\varepsilon}{\delta}. \]
+    Переходя в неравенстве к верхней грани, получаем, что
+    \[ \sup_{\norm{x} \leq 1}\norm{Ax} \leq \frac{2\varepsilon}{\delta}, \]
+    что и означает ограниченность оператора $A$.
+
+    Импликация $3 \Rightarrow 4$ проверяется непосредственно: если $A$ ---
+    ограниченный оператор, $x_1, x_2 \in X$, то
+    \[ \norm{Ax_1 - Ax_2} = \norm{A(x_1 - x_2)} \leq \norm{A} \norm{x_1 - x_2}.
+    \]
+\end{proof}
+
+\begin{definition}
+    Множество из метрического пространства называется \emph{множеством I
+    категории
+    (<<тощим>>, разреженным)}, если его можно представить в виде счетного объединения замкнутых
+    множеств, каждое из которых не содержит шара.
+\end{definition}
+
+\begin{definition}
+    Множество, не являющееся множеством I категории, называется \emph{множеством
+    II категории (<<тучным>>)}.
+\end{definition}
+
+\begin{theorem}[Бэра]
+    Каждое полное метрическое пространство является множеством II категории.
+\end{theorem}
+
+Пусть $X$ и $Y$ --- банаховы пространства и $\Omega$ --- множество индексов,
+$\menge{A_\alpha}_{\alpha \in \Omega}$ --- семейство ограниченных операторов.
+
+Будем называть семейство операторов \emph{ограниченным поточечно}, если для
+каждого $x \in X$ существует такая константа $M(x) > 0$, что
+\[ \norm{A_\alpha x} \leq M(x) \]
+для всех $\alpha \in \Omega$, то есть для каждого $x \in X$ множество
+\[ \menge{A_\alpha x : \alpha \in \Omega} \subset Y \]
+ограничено в $Y$.
+
+Семейство операторов назовём \emph{ограниченным равномерно}, если существует такое
+число $C > 0$, что для всех $\alpha \in \Omega$ выполнено неравенство
+\[ \norm{A_\alpha} < C, \]
+то есть числовое множество
+\[ \menge{\norm{A_\alpha} : \alpha \in \Omega} \]
+ограничено.
+
+\begin{theorem}[Банаха-Штейнгауза]
+    Если семейство ограниченных операторов $\menge{A_\alpha}_{\alpha \in \Omega}$,
+    действующих из банахова пространства $X$ в нормированное пространство $Y$, 
+    ограничено поточечно, то оно ограничено и равномерно. 
+\end{theorem}
+
+\begin{proof}
+    Рассмотрим множества вида
+    \[ X_n = \menge{x \in X : \forall \alpha \in \Omega \; \norm{A_\alpha x} \leq n}. \]
+    В силу поточечной ограниченности семейства, $X = \bigcup\limits_{n=1}^\infty X_n$.
+
+    Каждое из множеств $X_n$ замкнуто. В самом деле: если $\menge{x_k}$ ---
+    сходящаяся к $x_0 \in X$ последовательность элементов из $X_n$, то, в силу непрерывности
+    операторов $A_\alpha$, $\lim\limits_{k\to\infty}\norm{A_\alpha x_k}
+    =\norm{A_\alpha x_0}$, а поскольку для всех $x_k$ и всех $\alpha \in \Omega$
+    выполняется неравенство $\norm{A_\alpha x_k} \leq n$, то и $\norm{A_\alpha
+    x_0} \leq n$, а значит $x_0 \in X_n$, что и означает замкнутость $X_n$.
+
+    Поскольку пространство $X$ полно, по теореме Бэра существует такой номер
+    $n_0$, что $X_{n_0}$ содержит в себе шар, который будем 
+    обозначать $B(x', r)$, где $r$ --- радиус этого шара, а
+    $x'$ --- его центр.
+
+    Для всех элементов $x$ из $B(x', r)$ и для всех $\alpha \in \Omega$ справедливо, что
+    \[ \norm{A_\alpha x} \leq n_0, \]
+    то есть значения $\norm{A_\alpha x}$ ограничены на этом шаре. Покажем, что они
+    ограничены и на единичном шаре, что будет означать ограниченность норм
+    $A_\alpha$. 
+    
+    Пусть $x \in B(0, 1)$. Тогда, как нетрудно
+    проверить, $z = rx + x' \in B(x', r)$. В таком случае для всех $\alpha \in
+    \Omega$
+    \[ \norm{A_{\alpha} x} = \norm{A_{\alpha} \left( \frac{z - x'}{r}
+    \right)}\leq \frac{1}{r} (\norm{A_\alpha z} + \norm{A_\alpha x'}) \leq
+    \frac{2n_0}{r}, \]
+    откуда, взяв верхнюю грань по всем $x \in B(0, 1)$, получаем утверждение
+    теоремы.
+\end{proof}
+
+Пусть $A \colon D(A) \subset X \to X$ --- линейный оператор, определенный на некотором
+подпространстве $D(A)$ пространства $X$.
+
+\begin{definition}
+    Оператор $A \colon D(A) \subset X \to X$ называется \emph{замкнутым}, если его график
+    \[ \Gamma(A) = \menge{(x, Ax) : x \in D(A)} \subset X \times X \]
+    является замкнутым подмножеством в пространстве $X \times X$, наделённом нормой
+    \[ \norm{(x_1, x_2)} = \max\menge{\norm{x_1}, \norm{x_2}}. \]
+\end{definition}
+
+Иначе говоря, оператор замкнут,
+если для всякой сходящейся последовательности $\menge{x_n} \subset D(A)$ такой, что
+$Ax_n \to y \in X$, её предел $x$ лежит в $D(A)$ и $y = Ax$.
+
+\begin{theorem}
+    Всякий ограниченный оператор $A \in \End X$ замкнут.
+\end{theorem}
+
+\begin{theorem}[Банаха о замкнутом графике]
+    \indent Пусть $A \colon X \to X$ --- замкнутый линейный оператор, определенный на всем
+    банаховом пространстве $X$. Тогда оператор $A$ ограничен.
+\end{theorem}
+
+Пусть $A \in \End X$. Рассмотрим два условия:
+\begin{enumerate}
+    \item $\ker A = \menge{0}$ --- оператор $A$ инъективен.
+    \item $\im A = X$ --- оператор $A$ сюръективен.
+\end{enumerate}
+
+\begin{theorem}[Банаха об обратном операторе]
+    \indent Пусть линейный оператор $A \in \End X$, действующий в банаховом пространстве $X$, 
+    биективен, т.е. выполнены условия (1) и (2). Тогда $A^{-1}$ ограничен.
+\end{theorem}
+
+Если $A \colon D(A) \subset X \to X$ определен не на всем пространстве, то для него также можно 
+рассматривать условия (1, 2). Тогда будем называть обратным к оператору $A$ оператор 
+$A^{-1} \colon X \to X$, который удовлетворяет естественным условиям
+\[ AA^{-1} = I_X \]
+и
+\[ A^{-1}Ax = x \]
+для всех $x \in D(A)$. 
+Обратим внимание, что мы считаем $A^{-1}$ действующим из $X$ \emph{во всё пространство $X$}, 
+а не в $D(A)$.
+
+\begin{theorem}[Банаха об обратном операторе]\hfill\\
+    \indent Пусть $A \colon D(A) \subset X \to X$ --- замкнутый биективный линейный оператор, 
+    определенный на подмножестве $D(A)$ банахова пространства $X$. Тогда $A^{-1} \colon X \to X$ 
+    --- ограниченный оператор. 
+\end{theorem}
+
+Доказательство аналогично предыдущему.
+
+\begin{lemma}\label{le:neumann}
+    Если $A \in \End X$ и $\norm{A} < 1$, то оператор $I - A$ обратим, а обратный задается формулой
+    \[ (I - A)^{-1} = \sum_{n = 0}^\infty A^n, \]
+    причем ряд сходится абсолютно и
+    \[ \norm{(I-A)^{-1}} \leq \frac{1}{1-\norm{A}}. \]
+\end{lemma}
+
+\begin{proof}
+    Покажем, что ряд сходится абсолютно. Используем формулу суммы геометрической прогрессии:
+    \[ \sum_{n=0}^\infty \norm{A^n} \leq \sum_{n=0}^\infty \norm{A}^n = \frac{1}{1-\norm{A}}. \]
+    Итак, ряд сходится абсолютно, значит он сходится. Отсюда же следует и оценка нормы.
+    Обозначим сумму ряда через $B \in \End X$. Покажем, что $B$ --- обратный к $I - A$.
+    \begin{multline*}
+        (I - A)B = (I - A)\sum_{n=0}^\infty A^n = \lim_{m\to \infty} (I - A)\sum_{n=0}^m A^n = \\
+            = \lim_{m \to \infty} \sum_{n=0}^m (A^n - A^{n+1}) = \lim_{m\to \infty} (I - A^{m+1})
+            = I,
+    \end{multline*}
+    где последнее равенство справедливо в силу условия $\norm{A} < 1$.
+
+    Аналогично доказывается, что $B(I - A) = I$.
+\end{proof}
+
+\begin{theorem}
+    Пусть $A, B \in \End X$, $A$ обратим, $\norm{B}\norm{A^{-1}} < 1$. Тогда $A - B$ обратим и
+    \[ (A-B)^{-1} = \sum_{n=0}^\infty (A^{-1}B)^n A^{-1}, \]
+    и справедлива оценка
+    \[ \norm{(A-B)^{-1}} \leq \frac{\norm{A^{-1}}}{1-\norm{B}\norm{A^{-1}}}. \]
+\end{theorem}
+
+\begin{lemma}
+    Если $A \colon D(A) \subset X \to X$ замкнут, то и $A - \lambda I$ замкнут, 
+    где $\lambda \in \fieldc$, а $I \colon D(A) \subset X \to X$ --- тождественный оператор.
+\end{lemma}
+
+\begin{definition}
+    Пусть $A \colon D(A) \subset X \to X$ --- замкнутый оператор. 
+    Будем называть число $\lambda \in \fieldc$ \emph{точкой спектра} оператора $A$, если оператор 
+    $ A - \lambda I \colon D(A) \subset X \to X $ необратим, то есть выполнено хотя бы одно из 
+    условий
+    \begin{enumerate}
+        \item $\ker (A - \lambda I) \neq \menge{0}$ --- оператор не инъективен.
+        \item $\im (A - \lambda I) \neq X$ --- оператор не сюръективен.
+    \end{enumerate}
+
+    Если же число $\lambda \in \fieldc$ не является точкой спектра, то его называют
+    \emph{регулярной точкой} оператора $A$.
+\end{definition}
+
+Заметим, что по теореме Банаха об обратном операторе, если число $\lambda$ --- регулярная точка
+$A$, то оператор $(A - \lambda I)^{-1}$ ограничен.
+
+\begin{definition}
+    Множество $\spectrum{A}$ точек спектра оператора $A$ называется \emph{спектром} оператора $A$.
+\end{definition}   
+
+\begin{definition}
+    Множество $\resset{A} = \fieldc \setminus \spectrum{A}$ регулярных точек оператора $A$
+    называется \emph{резольвентным множеством} оператора $A$.
+\end{definition}
+
+Спектр оператора принято разбивать на три взаимно непересекающиеся части:
+\begin{enumerate}
+    \item Дискретный спектр $\spectrum[d]{A}$ --- множество собственных значений оператора $A$, то есть такие $\lambda \in \fieldc$, что $\ker (A - \lambda I) \neq \menge{0}$.
+    \item Непрерывный спектр $\spectrum[c]{A}$ --- множество таких $\lambda \in \fieldc$, не
+    являющихся собственными значениями, что $\im (A - \lambda I) \neq X$, но 
+    $\overline{\im (A - \lambda I)} = X$.
+    \item Остаточный спектр $\spectrum[r]{A}$ --- множество точек спектра, не вошедших ни в
+    дискретный спектр, ни в непрерывный спектр.
+\end{enumerate}
+
+Ясно, что $\spectrum{A} = \spectrum[d]{A} \cup \spectrum[c]{A} \cup \spectrum[r]{A}$.
+\begin{definition}
+    Отображение $\resolvent{\bullet}{A} \colon \resset{A} \to \End X$, действующее по правилу
+    \[ \resolvent{\lambda}{A} = (A - \lambda I)^{-1}, \]
+    называется \emph{резольвентой} оператора $A$.
+\end{definition}
+
+\begin{theorem}\label{th:resanalytic}
+    Для всякого замкнутого оператора $A$ множество $\resset{A}$ открыто.
+    Резольвента $\resolvent{\bullet}{A} \colon \resset{A} \to \End X$ --- аналитическая функция
+    на $\resset{A}$.
+\end{theorem}
+
+\begin{proof}
+    Пусть $\lambda_0 \in \resset{A}$, а $\lambda \in \fieldc$ таково, что
+    \[ \absv{\lambda - \lambda_0} < \frac{1}{\norm{\resolvent{\lambda_0}{A}}}. \]
+
+    Тогда представим оператор $A - \lambda I$ в следующем виде:
+    \[ A - \lambda I = A - \lambda_0 I + \lambda_0 I - \lambda I = 
+       (A - \lambda_0 I)(I - (\lambda - \lambda_0) \resolvent{\lambda_0}{A}). \]
+    Оператор $I - (\lambda - \lambda_0) \resolvent{\lambda_0}{A}$ обратим, поскольку 
+    (см. лемму \ref{le:neumann})
+    \[ \norm{(\lambda - \lambda_0) \resolvent{\lambda_0}{A})} < 1. \]
+    Так как $A - \lambda_0 I$ также обратим, то и $A - \lambda I$ обратим как произведение
+    обратимых операторов. Отсюда следует, что резольвентное множество открыто: вместе с каждой
+    точкой $\lambda_0$
+    в $\resset{A}$ входит открытый круг радиусом меньше $\norm{\resolvent{\lambda_0}{A}}^{-1}$ с 
+    центром в точке $\lambda_0$.
+
+    Оператор, обратный к $(I - (\lambda - \lambda_0) \resolvent{\lambda_0}{A})$ представляется
+    в виде
+    \[ (I - (\lambda - \lambda_0) \resolvent{\lambda_0}{A})^{-1} = 
+        \sum_{n=0}^\infty (\lambda - \lambda_0)^n \resolvent{\lambda_0}{A}^n. \]
+
+    Тогда 
+    \begin{multline*}
+        \resolvent{\lambda}{A} = 
+            (A - \lambda I)^{-1} = (I - (\lambda - \lambda_0) \resolvent{\lambda_0}{A})^{-1}
+             (A - \lambda_0 I)^{-1} =\\= \sum_{n=0}^\infty (\lambda - \lambda_0)^n 
+             \resolvent{\lambda_0}{A}^{n+1}.
+    \end{multline*}
+
+    Таким образом мы получили, что $\resolvent{\lambda}{A}$ в некоторой окрестности каждой точки
+    $\lambda_0 \in \resset{A}$
+    представляется в виде суммы степенного ряда с коэффициентами 
+    $c_n = \resolvent{\lambda_0}{A}^{n+1}$. Значит,
+    функция $\resolvent{\lambda}{A}$ аналитична на $\resset{A}$.
+\end{proof}
+
+\begin{corollary}
+    Для любого замкнутого оператора $A$ множество $\spectrum{A}$ замкнуто.
+\end{corollary}
+
+\begin{theorem}[тождество Гильберта]
+    Для любого замкнутого оператора $A$ и любых чисел $\lambda, \mu \in \resset{A}$ 
+    справедливо равенство
+    \[ \resolvent{\lambda}{A} - \resolvent{\mu}{A} 
+        = (\lambda - \mu) \resolvent{\lambda}{A}\resolvent{\mu}{A}. \]
+\end{theorem}
+
+\begin{corollary}
+    Операторы $\resolvent{\lambda}{A}$ и $\resolvent{\mu}{A}$ перестановочны.
+\end{corollary}
+
+\begin{theorem}[о спектре ограниченного оператора]\label{th:boundedspectrum}
+    \indent Пусть $A \in \End X$ --- ограниченный оператор, действующий в банаховом пространстве $X$.
+    Тогда его спектр $\spectrum{A}$ есть непустое компактное множество в $\fieldc$.
+\end{theorem}
+
+\begin{definition}
+    \emph{Спектральным радиусом} линейного ограниченного оператора $A \in \End X$ называется величина
+    \[ r(A) = \max_{\lambda \in \spectrum{A}} \absv{\lambda}. \]
+\end{definition}
+
+Спектральный радиус корректно определен в виду компактности спектра $A$ и его непустоты.
+Из доказательства теоремы \ref{th:boundedspectrum} видно, что
+\[ r(A) \leq \norm{A}, \]
+поскольку, если $\absv{\lambda} > \norm{A}$, то оператор $A- \lambda I$ обратим.
+
+\begin{theorem}[формула Бёрлинга-Гельфанда]
+    Пусть $A \in \End X$. Тогда для спектрального радиуса оператора $A$ справедлива формула
+    \[ r(A) = \lim_{n\to \infty} \sqrt[n]{\norm{A^n}}. \]
+\end{theorem}
