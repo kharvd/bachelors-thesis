@@ -1,7 +1,7 @@
 \section{Доказательства основных результатов}
 Пусть задан операторный полином $ \mathcal A \in \End X$, разложенный по степеням оператора $A$:
 \[  \mathcal A = C_0 A^N + C_1 A^{N - 1} + \dotsc + C_N, \]
-где $A, C_0, \dotsc, C_N \in \End X, N \in \mathbb{N}$, и соответствующий ему оператор $\mathbb A \in \End{X^N}$:
+где $A, C_0, \dotsc, C_N \in \End X, N \in \mathbb{N}$, и соответствующий ему оператор $\mathbb A \hm\in \End{X^N}$:
 \[ \mathbb A \sim \begin{pmatrix}
     A & -I & 0  & \cdots & 0 & 0 \\
     0 & A  & -I & \cdots & 0 & 0 \\
@@ -157,12 +157,12 @@
 \begin{proof}[Доказательство теоремы \ref{th:inverse}]
     Рассмотрим разложение $\widetilde{\mathbb A} = \mathcal J_1 \mathcal J_2 \mathbb B \mathcal J_3$. Каждый из операторов в этом разложении обратим. Запишем обратные к ним (проверяется непосредственно):
     \[\mathcal J_3^{-1} \sim \begin{pmatrix}
-    I & 0 & 0 & \cdots & 0 & 0 \\
-    A & I & 0 & \cdots & 0 & 0 \\
-    A^2 & A & I & \cdots & 0 & 0 \\
-    \vdots & \vdots & \ddots & \ddots & \vdots & \vdots \\
-    A^{N-1} & A^{N-2} & A^{N-3} & \ddots & I & 0 \\
-    A^N & A^{N-1} & A^{N-2} & \cdots & A & I
+    I & 0 & \cdots & 0 & 0 \\
+    A & I & \cdots & 0 & 0 \\
+    A^2 & A & \cdots & 0 & 0 \\
+    \vdots & \vdots & \ddots & \vdots & \vdots \\
+    A^{N-1} & A^{N-2} & \ddots & I & 0 \\
+    A^N & A^{N-1} & \cdots & A & I
    \end{pmatrix}; \quad
    \mathcal J_2^{-1} \sim \begin{pmatrix}
     I & B_1 & B_2 & \cdots & B_N \\

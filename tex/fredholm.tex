@@ -1,4 +1,5 @@
 \chapter{Условия фредгольмовости разностных операторов}\label{sec:fredhlom}
+\section{Основные результаты}
 В этом параграфе получены необходимые и достаточные условия фредгольмовости разностного оператора вида \eqref{eq:d_def}, т.е. оператора
 \begin{gather*}
     \mathcal A \colon l^p  \to l^p, \\
@@ -36,7 +37,7 @@
 Пару проекторнозначных функций $P, Q\colon \mathbb J \to \End X$, участвующих в определении \ref{def:dich}, назовём \emph{расщепляющей парой} для семейства $\mathcal U$. Если $P= 0$ или $Q = 0$, то будем говорить, что для $\mathcal U$ имеет место \emph{тривиальная экспоненциальная дихотомия} на $\mathbb J$.
 
 \begin{theorem}[(\cite{BasPas01}, \cite{bohr2005})]\label{th:dich}
-    Для того чтобы разностный оператор $\mathbb D \in \End l^p(\groupz, X)$, определяемый функцией $U \in l^\infty(\groupz, X)$, был обратим, необходимо и достаточно, чтобы семейство эволюционных операторов $\mathcal U$ допускало экспоненциальную дихотомию на $\groupz$. Если оператор $\mathbb D$ обратим, то обратный к нему определяется формулой
+    Для того чтобы оператор $\mathbb D \in \End l^p(\groupz, X)$, определяемый функцией $U \in l^\infty(\groupz, X)$, был обратим, необходимо и достаточно, чтобы семейство эволюционных операторов $\mathcal U$ допускало экспоненциальную дихотомию на $\groupz$. Если оператор $\mathbb D$ обратим, то обратный к нему определяется формулой
     \[ (\mathbb D^{-1} y)(n) = \sum_{m=-\infty}^\infty G(n, m) y(m), \quad n \in \groupz, y \in l^p(\groupz, X),\]
     где функция Грина $G\colon \groupz^2 \to \End X$ имеет вид
     \[ G(n, m) = \begin{cases}
@@ -63,7 +64,7 @@
 
 Имеет место следующая теорема (\cite{Bas00}, \cite{Bas13}).
 \begin{theorem}\label{th:knot_stinv}
-    Пусть для семейства эволюционных операторов $\mathcal U \colon \Delta \to \End X$, построенным по функции $U\colon \groupz \to \End X$ выполнены условия предположения \ref{assum:knot}.
+    Пусть для семейства эволюционных операторов $\mathcal U \colon \Delta \hm\to \End X$, построенным по функции $U\colon \groupz \to \End X$ выполнены условия предположения \ref{assum:knot}.
 
     Тогда имеет место равенство
     \[ \Stinv{\mathbb D} = \Stinv{\mathcal N_{b, a}}.\]
@@ -98,7 +99,7 @@
 \end{theorem}
 
 \begin{theorem}\label{th:fredholm_difference}
-    Пусть для семейства эволюционных операторов $\mathcal U = \mathcal U_1\colon \Delta \to \End Y^N$, построенного для разностного уравнения \eqref{eq:difference_nth_hom}, выполнены условия предположения \ref{assum:knot}.
+    Пусть для семейства $\mathcal U = \mathcal U_1\colon \Delta \to \End Y^N$, построенного для разностного уравнения \eqref{eq:difference_nth_hom}, выполнены условия предположения \ref{assum:knot}.
 
     Тогда имеет место равенство
     \[ \Stinv{\mathcal A} = \Stinv{\mathcal N_{b, a}}.\]
@@ -132,7 +133,7 @@
 \end{theorem}
 
 \begin{proof}
-    Непосредственно из теоремы \ref{th:main_abstract} следует, что спектры $\spectrum{\mathcal C_1^\pm}$ операторов $\mathcal C_1^\pm \in \End Y^N$, заданных матрицами
+    Непосредственно из теоремы \ref{th:main_abstract} получаем, что спектры $\spectrum{\mathcal C_1^\pm}$ операторов $\mathcal C_1^\pm \in \End Y^N$, заданных матрицами
     \[\mathcal C_1^\pm \sim \begin{pmatrix}
     0 & -I & 0  & \cdots & 0 & 0 \\
     0 & 0  & -I & \cdots & 0 & 0 \\
@@ -141,7 +142,7 @@
     0 & 0 & 0 & \cdots & 0 & -I \\
     C_N^\pm & C_{N-1}^\pm & C_{N-2}^\pm & \cdots & C_2^\pm & C_1^\pm
    \end{pmatrix},\]
-    совпадают со спектрами $\spectrum{L^\pm}$ операторных пучков $L^\pm$, поэтому $r(\mathcal C_1^\pm) = r(L^\pm) < 1$.
+    совпадают со спектрами $\spectrum{L^\pm}$ операторных пучков $L^\pm$, поэтому $r(\mathcal C_1^\pm) \hm= r(L^\pm) < 1$.
     Операторы $\mathcal C_1^\pm$ являются пределами последовательности $\mathcal C_1(n)$ в равномерной операторной топологии.
     Тогда из \cite[теорема 3]{Bas00} следует, что оператор $\mathbb D$ обратим, следовательно обратим и оператор $\mathcal A$.
 \end{proof}
@@ -175,7 +176,7 @@
 
 Введём в рассмотрение операторнозначную функцию $H \colon \groupt \to \End X$:
 \[ H(\gamma) = \gamma^N C_0 + \gamma^{N-1} C_1 + \dotsc + C_N, \quad \gamma \in \groupt = \menge{\lambda \in \fieldc : \absv{\lambda} = 1}. \]
-Эту функцию назовём \emph{характеристической функцией} оператора $ \mathcal A$. Множество $\rho(H)$, состоящее из таких $\gamma \in \groupt$, что оператор $H(\gamma)$ обратим, назовём \emph{резольвентным множеством} функции $H$, а дополнение к нему, $s(H) = \groupt \setminus \rho(H)$ --- \emph{сингулярным множеством} этой функции.
+Эту функцию назовём \emph{характеристической функцией} оператора $ \mathcal A$. Множество $\rho(H)$, состоящее из таких $\gamma \in \groupt$, что оператор $H(\gamma)$ обратим, назовём \emph{резольвентным множеством} функции $H$, а дополнение к нему, $s(H) \hm= \groupt \setminus \rho(H)$ --- \emph{сингулярным множеством} этой функции.
 
 \begin{theorem}\label{th:constant_inverse}
     Разностный оператор $\mathcal A$ с постоянными коэффициентами $C_i$, $i = \overline{0,N}$,обратим тогда и только тогда, когда сингулярное множество $s(H)$ его характеристической функции пусто. Если $s(H) = \varnothing$, то обратный оператор $\mathcal A^{-1} \in \End l^p$ представим в виде
@@ -251,7 +252,7 @@ x(n + N - 1)
     \vdots & \vdots & \ddots & \vdots & \vdots \\
     0 & 0 & \cdots & 0 & I \\
     -C_N & -C_{N-1} & \cdots & -C_2 & -C_1
-   \end{pmatrix}^n
+   \end{pmatrix}^{\displaystyle n}
    \begin{pmatrix}
     x(0) \\
     x(1) \\
@@ -270,9 +271,10 @@ x(n + N - 1)
 \begin{theorem}\label{th:asymptotic}
     Пусть выполнены условия предположения \ref{assum:bounded} и 
     \[ \spectrum{\mathcal C_1} \cap \groupt = \menge{\gamma_1, \dotsc, \gamma_m}.\] 
-    Тогда существуют операторнозначные функции $A_k \in l^\infty(\groupz_+, \End{Y^N})$, $k = \overline{1,m}$, такие что для любого решения $x \colon \groupz_+ \to Y$ уравнения \ref{eq:homogeneous} имеют место следующие представления
-    \[ (x(n), x(n+1), \dotsc, x(n+N-1)) = \left(\sum_{k=1}^m \gamma_k^n A_k(n) \right) (x(0), x(1), \dotsc, x(N-1)), \quad n \in \groupz_+. \]
-    Функции $A_k$, $k = \overline{1,m}$ обладают следующими свойствами:
+    Тогда существуют операторнозначные функции $A_k \in l^\infty(\groupz_+, \End{Y^N})$, $k \hm= \overline{1,m}$, такие что для любого решения $x \colon \groupz_+ \to Y$ уравнения \ref{eq:homogeneous} имеют место следующие представления
+    \[ (x(n), x(n+1), \dotsc, x(n+N-1)) = \left(\sum_{k=1}^m \gamma_k^n A_k(n) \right) (x(0), x(1), \dotsc, x(N-1)),\]
+    \[n \in \groupz_+.\]
+    Функции $A_k$, $k \hm= \overline{1,m}$ обладают следующими свойствами:
     \begin{enumerate}
     \item операторы $A_k(n) \in \End{Y^N}$, $n \in \groupz_+$ принадлежат наименьшей замкнутой подалгебре $\mathcal A_{\mathcal C_1}$ из $\End Y^N$, содержащей оператор $\mathcal C_1$;
     \item $\lim_{n\to \infty} {\norm{A_k(n+1) - A_k(n)}} = 0$;
@@ -281,6 +283,6 @@ x(n + N - 1)
     \end{enumerate}
 \end{theorem}
 
-В заключение отметим, что основные результаты статьи (теоремы 1-5) имеют место
+В заключение отметим, что основные результаты работы (теоремы 1-5) имеют место
 для разностных операторов, действующих в весовых пространствах
 последовательностей векторов (см. статьи \cite{Bic10}, \cite{Bic13}, \cite{Bic14}).
