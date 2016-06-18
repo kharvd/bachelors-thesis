@@ -1,0 +1,328 @@
+\documentclass{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage[english,russian]{babel}
+\usepackage{calrsfs}
+
+\usepackage{mymacros}
+
+\usetheme{Darmstadt}
+\usecolortheme{dolphin}
+
+\title{Спектральный анализ операторных полиномов
+и~разностных~операторов высокого порядка}
+\author{В. Д. Харитонов \\ (kharvd@gmail.com)}
+\date{24 июня 2016 г.}
+
+\begin{document}
+
+\frame{\titlepage}
+
+\begin{frame}
+    \frametitle{Содержание}
+    \tableofcontents
+\end{frame}
+
+\section{Постановка задачи}
+
+\begin{frame}
+\frametitle{Постановка задачи}
+
+Из курса дифференциальных и разностных уравнений известен метод приведения линейного уравнения $N$-ого порядка к системе из $N$ уравнений первого порядка.
+
+\begin{gather*}
+    a_0(t) x^{(n)}(t) + a_1(t) x^{(n-1)}(t) + \dotsc + a_n(t) x(t) = f(t); \\[2em]
+    x_1(t) = x(t); \\
+    \left\{ \begin{gathered}
+        \dot{x_1}(t) = x_2(t), \\
+        \dot{x_2}(t) = x_3(t), \\
+        \dotsc \\
+        a_0(t) \dot{x_n}(t) = -a_1(t) x_{n-1}(t) - \dotsc - a_n(t) x_1(t) + f(t).
+    \end{gathered}\right.
+\end{gather*}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Постановка задачи}
+    $X$, $Y$ --- комплексные банаховы пространства, $\Hom(X, Y)$ --- банахово пространство линейных ограниченных операторов (гомоморфизмов), определенных на $X$ со значениями в $Y$, $\End X = \Hom(X, X)$ --- банахова алгебра эндоморфизмов пространства $X$.
+
+    Линейный оператор
+    \[  \mathcal A = C_0 A^N + C_1 A^{N - 1} + \dotsc + C_N, \]
+    $A, C_0, \dotsc, C_N \in \End X, N \in \mathbb{N}$, назовём \emph{операторным полиномом}, разложенным по степеням оператора $A$.
+\end{frame}
+
+\begin{frame}
+\frametitle{Постановка задачи}
+
+Применим для уравнения с операторным полиномом описанный ранее метод:
+
+\begin{gather*}
+    \mathcal{A}x = f, \\
+    C_0 A^N x + C_1 A^{N-1} x + \dotsc + C_N x = f, \quad x, f \in X; \\[2em]
+    x_1 = x; \\
+    \left\{ \begin{gathered}
+        A x_1 = x_2, \\
+        A x_2 = x_3, \\
+        \dotsc \\
+        C_0 A x_N = -C_1 x_{N-1} - \dotsc - C_N x_1 + f.
+    \end{gathered}\right.
+\end{gather*}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Постановка задачи}
+
+Полученную систему уравнений перепишем в матричном виде:
+
+\[ \begin{pmatrix}
+    A & -I & 0  & \cdots & 0 & 0 \\
+    0 & A  & -I & \cdots & 0 & 0 \\
+    0 & 0  & A & \cdots & 0 & 0 \\
+    \vdots & \vdots & \vdots & \ddots & \vdots & \vdots \\
+    0 & 0 & 0 & \cdots & A & -I \\
+    C_N & C_{N-1} & C_{N-2} & \cdots & C_2 & C_0 A + C_1
+   \end{pmatrix} \begin{pmatrix}
+    x_1 \\
+    x_2 \\
+    x_3 \\
+    \vdots \\
+    x_{N - 1} \\
+    x_{N}
+   \end{pmatrix} = \begin{pmatrix}
+    0 \\
+    0 \\
+    0 \\
+    \vdots \\
+    0 \\
+    f
+   \end{pmatrix}, \]
+
+\[ \mathbb{A} \mathfrak{x} = \mathfrak{f}, \]
+где $\mathfrak{x}, \mathfrak{f} \in X^N$, $\mathbb{A} \in \End{X^N}$.
+\end{frame}
+
+\section{Основные результаты}
+\begin{frame}
+\frametitle{Определение состояний обратимости}
+
+\begin{definition}
+    Пусть $B \in \Hom(X_1, X_2)$ --- линейный ограниченный оператор между банаховыми пространствами $X_1$, $X_2$. Рассмотрим следующий набор его возможных свойств.
+    \begin{enumerate}
+        \setlength\itemsep{0em}
+        \item $\ker B = \menge{x \in X_1 : Bx = 0} = \menge{0}$,
+        \item $1 \leq n = \dim \ker B < \infty$ (ядро конечномерно);
+        \item $\ker B$ --- бесконечномерное подпространство в $X_1$;
+        \item $\ker B$ --- дополняемое подпространство в~$X_1$;
+        \item $\overline{\im B} = \im B$ --- образ оператора~$B$ замкнут в~$X_2$;
+        \item оператор~$B$ равномерно инъективен (корректен);
+        \item $\im B$ --- замкнутое подпространство в~$X_2$ конечной коразмерности;
+        \item $\im B$ --- замкнутое подпространство в~$X_2$ бесконечной коразмерности;
+    \end{enumerate}
+\end{definition}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Определение состояний обратимости (продолжение)}
+
+\begin{definition}
+    \begin{enumerate}
+        \setcounter{enumi}{7}
+        \setlength\itemsep{0em}
+        \item $\im B \neq X_2$, $\overline{\im B} = X_2$ (образ оператора~$B$ плотен в $X_2$, но~не~совпадает со~всем~$X_2$);
+        \item $\overline{\im B} \neq X_2$ (образ~$B$ не~плотен в~$X_2$);
+        \item $\im B = X_2$ (оператор~$B$ сюръективен);
+        \item оператор~$B$ обратим (т.~е. $\ker B = \menge{0}$ и $\im B = X_2$).
+    \end{enumerate}
+    Если для оператора $B$ одновременно выполнены все условия из совокупности условий $\sigma \hm= \menge{i_1, \dotsc, i_k}$, где $1 \leq i_1 < \dotsc < i_k \leq 12$, то будем говорить, что оператор $B$ \emph{находится в состоянии обратимости} $\sigma$. Множество всех состояний обратимости оператора $B$ обозначим символом $\Stinv B$.
+\end{definition}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Фредгольмовость}
+\begin{definition}
+Если оператор $B \in \Hom(X_1, X_2)$ имеет конечномерное ядро (выполнено одно из условий 1), 2) определения) и замкнутый образ конечной коразмерности (одно из условий 7), 11)), то оператор $B$ называется \emph{фредгольмовым}. Если оператор $B$ имеет замкнутый образ и конечно хотя бы одно из чисел $\dim \ker B$, $\codim \im B = \dim X_2 / \im B$, то оператор $B$ называется \emph{полуфредгольмовым}. Число $\ind B = \dim \ker B - \codim \im B$ называется \emph{индексом} фредгольмова (полуфредгольмова) оператора $B$.
+\end{definition}
+\end{frame}
+
+\begin{frame}
+\frametitle{Основные результаты}
+
+\begin{theorem}
+    Множества состояний обратимости операторов $ \mathcal A \in \End{X}$ и $\mathbb A \in \End{X^{N}}$ совпадают:
+    \[ \Stinv{\mathcal A} = \Stinv{\mathbb A}. \]
+\end{theorem}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Основные результаты}
+
+\begin{theorem}\label{th:inverse}
+    Пусть оператор $\mathcal A$ обратим. Тогда обратим и оператор $\mathbb A \in \End X^N$ и обратный $\mathbb A^{-1}$ имеет матрицу $(\mathbb A^{-1})_{ij}$, $1 \leq i, j \leq N$ вида:
+    \begin{gather*}
+        D_j = \mathcal A^{-1} \sum_{k = 0}^{N-j} C_k A^{N-k-j}, \quad i = \overline{1,N},\\[0.5em]
+        \begingroup
+        \renewcommand*{\arraycolsep}{1pt}
+        \begin{pmatrix}
+          D_1 &  D_2 &  \cdots & D_{N-1} &  \mathcal A^{-1} \\
+          A D_1 - I & A D_2 & \cdots & A D_{N-1} & A  \mathcal A^{-1} \\
+          A^2 D_1 - A & A^2 D_2 - I & \cdots & A^2 D_{N-1} & A^2 \mathcal A^{-1} \\
+          \vdots & \vdots & \ddots & \vdots & \vdots \\
+          A^{N-1} D_1 - A^{N-2} & A^{N-1} D_2 - A^{N-3} & \cdots & A^{N-1} D_{N-1} - I & A^{N-1}  \mathcal A^{-1}
+       \end{pmatrix}
+       \endgroup.
+    \end{gather*}
+\end{theorem}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Основные результаты}
+
+\begin{theorem}\label{th:inverse}
+    Оператор $\mathcal A$ фредгольмов (полуфредгольмов) тогда и только тогда, когда фредгольмовым (полуфредгольмовым) является оператор $\mathbb A$. При условии фредгольмовости одного из них
+    \begin{gather*}
+    \dim \ker \mathcal A = \dim \ker \mathbb A, \quad \dim \im \mathcal A = \codim \im \mathbb A, \\
+    \ind \mathcal A = \ind \mathbb A.
+    \end{gather*}
+\end{theorem}
+
+\end{frame}
+
+\section{Исследование разностных операторов}
+
+\begin{frame}
+\frametitle{Разностные операторы N-ого порядка}
+
+Символом $\ell^p = \ell^p(\groupz; Y)$, $1 \leq p \leq \infty$ обозначим банахово пространство суммируемых со степенью $p$ (ограниченных при $p = \infty$) двусторонних последовательностей векторов из банахова пространства $Y$. Нормы в этих пространствах определяются равенствами:
+\begin{align*}
+    \norm{x} = \norm{x}_p = \left(\sum_{n \in \groupz} \norm{x(n)}^p\right)^{1/p}, \quad &x \in \ell^p, \; p \in [1, \infty), \\
+    \norm{x} = \norm{x}_\infty = \sup_{n\in \groupz} \norm{x(n)}, \quad &x \in \ell^\infty.
+\end{align*}
+\end{frame}
+
+\begin{frame}
+В банаховом пространстве $\ell^p$ рассмотрим разностное уравнение $N$-ого порядка:
+\begin{gather*}
+C_0(k) x(k + N) + C_1(k) x(k + N - 1) + \dotsc + C_{N}(k) x(k) = f(k), \\
+k \in \groupz, \; x \in \ell^p,
+\end{gather*}
+где $f \in \ell^p$, а $C_i \in l^\infty(\groupz; \End Y)$, $i = \overline{0,N}$.
+\end{frame}
+
+
+\begin{frame}
+Разностное уравнение можно записать в операторном виде:
+\[  \mathcal A x = f, \]
+где разностный оператор $ \mathcal A \in \End \ell^p$ определяется формулой
+\begin{equation*}
+\mathcal A = \widetilde{C_0} S^N + \widetilde{C_1} S^{N - 1} + \dotsc + \widetilde{C_N}.
+\end{equation*}
+Операторы $\widetilde{C_i} \in \End \ell^p$, $i = \overline{0,N}$ есть операторы умножения на операторную функцию $C_i$:
+\[ (\widetilde{C_i}x)(k) = C_i(k)x(k), \quad k \in \groupz, \; x \in \ell^p, \; k = \overline{0,N}. \]
+\end{frame}
+
+\begin{frame}
+По оператору $\mathcal A$ строится оператор $\mathbb A \in \End \ell^p(\groupz; Y^N)$.
+\begin{equation*}
+(\mathbb A x)(k) = \mathcal C_0(k) x(k + 1) + \mathcal C_1(k) x(k) , \quad k \in \groupz, \; x \in \ell^p(\groupz; Y^N),
+\end{equation*}
+где
+\begin{gather*}
+   \mathcal C_0(k) \sim \begin{pmatrix}
+    I & 0 & \cdots &  0 \\
+    0 & I  & \cdots &  0 \\
+    \vdots & \vdots & \ddots &  \vdots \\
+    0 & 0 & \cdots &  C_0(k)
+   \end{pmatrix},\\
+   \mathcal C_1(k) \sim \begin{pmatrix}
+    0 & -I & 0  & \cdots & 0 & 0 \\
+    0 & 0  & -I & \cdots & 0 & 0 \\
+    0 & 0  & 0 & \cdots & 0 & 0 \\
+    \vdots & \vdots & \vdots & \ddots & \vdots & \vdots \\
+    0 & 0 & 0 & \cdots & 0 & -I \\
+    C_N(k) & C_{N-1}(k) & C_{N-2}(k) & \cdots & C_2(k) & C_1(k)
+   \end{pmatrix},\\[0.5em]
+   x(k) = (x_1(k), x_2(k), \cdots, x_N(k)), \quad x_i \in \ell^p, \; i = \overline{1,N}.
+\end{gather*}
+\end{frame}
+
+\begin{frame}
+\begin{theorem}
+    Имеет место равенство
+    \[ \Stinv \mathcal A = \Stinv \mathbb A. \]
+    В частности, оператор $\mathcal A$ фредгольмов тогда и только тогда, когда фредгольмов оператор $\mathbb A$. При условии фредгольмовости одного из них
+    \begin{gather*}
+    \dim \ker \mathcal A = \dim \ker \mathbb A, \quad \dim \im \mathcal A = \codim \im \mathbb A, \\
+    \ind \mathcal A = \ind \mathbb A.
+    \end{gather*}
+\end{theorem}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Разностные операторы с постоянными коэффициентами}
+
+Пусть теперь оператор $\mathcal A \in \End{\ell^p}$ имеет вид:
+\begin{gather*}
+    (\mathcal A x)(k) = C_0 x(k + N) + C_1 x(k + N - 1) + \dotsc + C_N x(k), \\
+    k \in \groupz, \; x \in \ell^p = \ell^p(\groupz, Y), \; p \in [1, \infty],
+\end{gather*}
+то есть $C_i(k) \equiv C_i \in Y^N$, $i = \overline{0,N}$ --- постоянные функции. В этом случае разностный оператор $\mathbb A$ задан выражением
+\begin{align*}
+    (\mathbb A y)(k) = \mathcal C_0 y(k + 1) + \mathcal C_1 y(k), \quad k \in \groupz, \; y \in \ell^p(\groupz; Y^N),
+\end{align*}
+где
+\[
+    \mathcal C_0 \sim \begin{pmatrix}
+    I & 0 & \cdots &  0 \\
+    0 & I  & \cdots &  0 \\
+    \vdots & \vdots & \ddots &  \vdots \\
+    0 & 0 & \cdots &  C_0
+   \end{pmatrix},\quad
+   \mathcal C_1 \sim \begin{pmatrix}
+    0 & -I & 0  & \cdots & 0 & 0 \\
+    0 & 0  & -I & \cdots & 0 & 0 \\
+    0 & 0  & 0 & \cdots & 0 & 0 \\
+    \vdots & \vdots & \vdots & \ddots & \vdots & \vdots \\
+    0 & 0 & 0 & \cdots & 0 & -I \\
+    C_N & C_{N-1} & C_{N-2} & \cdots & C_2 & C_1
+   \end{pmatrix}.
+\]
+\end{frame}
+
+\begin{frame}
+Введём в рассмотрение операторнозначную функцию $H \colon \groupt \to \End X$:
+\[ H(\gamma) = \gamma^N C_0 + \gamma^{N-1} C_1 + \dotsc + C_N, \quad \gamma \in \groupt = \menge{\lambda \in \fieldc : \absv{\lambda} = 1}. \]
+Эту функцию назовём \emph{характеристической функцией} оператора~$ \mathcal A$. Множество $\rho(H)$, состоящее из таких $\gamma \in \groupt$, что оператор $H(\gamma)$ обратим, назовём \emph{резольвентным множеством} функции $H$, а дополнение к нему, $s(H) \hm= \groupt \setminus \rho(H)$ --- \emph{сингулярным множеством} этой функции.
+\end{frame}
+
+\begin{frame}
+\begin{theorem}
+    Разностный оператор $\mathcal A$ с постоянными коэффициентами обратим тогда и только тогда, когда сингулярное множество $s(H)$ его характеристической функции пусто. При этом обратный оператор $\mathcal A^{-1} \in \End \ell^p$ представим в виде
+    \begin{equation*}
+     (\mathcal A^{-1} x)(k) = (G * x)(k)= \sum_{n \in \groupz} G(k - n) x(n), \quad k \in \groupz, \; x \in \ell^p.
+    \end{equation*}
+    Функция $G$ принадлежит банаховой алгебре $\ell^1(\groupz, \End Y)$ (со свёрткой функций в качестве умножения) и допускает представление вида
+    \[ G(n) = \frac{1}{2 \pi} \int_{\groupt} (H(\gamma))^{-1} \gamma^n \dd \gamma, \quad n \in \groupz. \]
+\end{theorem}
+\end{frame}
+
+\section{Заключение}
+\begin{frame}
+\frametitle{Заключение}
+Исследования не являются завершенными. Остаётся открытым вопрос обобщения результатов на случай операторного полинома, разложенного по степеням замкнутого неограниченного оператора $A$. Это позволит исследовать аналогичными методами дифференциальные операторы в банаховом пространстве.
+
+Основные результаты работы отправлены на публикацию в журнал <<Математические заметки>>.
+\end{frame}
+
+\begin{frame}
+\begin{center}
+Спасибо за внимание!
+\end{center}
+\end{frame}
+
+\end{document}

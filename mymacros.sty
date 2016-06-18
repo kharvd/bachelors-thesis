@@ -1,5 +1,9 @@
 \ProvidesPackage{mymacros}
 
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{amssymb}
+
 \makeatletter \renewenvironment{proof}[1][\proofname] {\par\pushQED{\qed}\normalfont\topsep6\p@\@plus6\p@\relax\trivlist\item[\hskip\labelsep\bfseries#1\@addpunct{.}]\ignorespaces}{\popQED\endtrivlist\@endpefalse} \makeatother
 
 %\sectionfont{\large}
@@ -46,19 +50,6 @@
 
 \renewcommand{\langle}{\left<}
 \renewcommand{\rangle}{\right>}
-
-\numberwithin{equation}{section}
-
-\theoremstyle{plain}
-\newtheorem{theorem}{Теорема}
-\newtheorem{lemma}{Лемма}
-\newtheorem{statement}{Утверждение}
-\newtheorem*{corollary}{Следствие}
-
-\theoremstyle{definition}
-\newtheorem{definition}{Определение}
-\newtheorem{assumption}{Предположение}
-\newtheorem{remark}{Замечание}
 
 \newcommand*{\hm}[1]{#1\nobreak\discretionary{}%
 {\hbox{\mathsurround=0pt \ensuremath{#1}}}{}}

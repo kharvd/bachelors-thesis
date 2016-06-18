@@ -1,11 +1,16 @@
 TARGET = thesis
+SLIDES = slides
 TEX = pdflatex
 BIBER = biber
 
 CLEXT ?= *.aux *.toc *.idx *.ind *.ilg *.log *.out *.lof *.lot *.lol \
   *.bbl *.bcf *.blg *.bak *.dvi *.run.xml *.ps *.pdf *.synctex *.synctex.gz
 
-all : $(TARGET).pdf
+all : thesis slides
+
+thesis : $(TARGET).pdf
+
+slides : $(SLIDES).pdf
 
 install : all
 
@@ -21,3 +26,7 @@ $(TARGET).pdf : $(TARGET).tex tex/*.tex *.sty *.bib
 	$(BIBER) $(TARGET).bcf
 	$(TEX) $(TARGET).tex
 	$(TEX) $(TARGET).tex
+
+$(SLIDES).pdf : $(SLIDES).tex *.sty
+	$(TEX) $(SLIDES).tex
+	$(TEX) $(SLIDES).tex

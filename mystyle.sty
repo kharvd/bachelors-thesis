@@ -16,10 +16,6 @@
             hyperref=true,
             backend=biber]{biblatex}
 
-\usepackage{amsmath}
-\usepackage{mathtools}
-\usepackage{amssymb}
-\usepackage{amsthm}
 \usepackage{hyperref}
 %\usepackage{indentfirst}
 \usepackage{setspace}
@@ -29,6 +25,8 @@
 \usepackage{csquotes}
 \usepackage[russian]{cleveref}
 \usepackage{pbox}
+\usepackage{amsthm}
+
 \usepackage{title}
 \usepackage{mymacros}
 
@@ -36,6 +34,21 @@
   a4paper,
   left=3cm, right=1cm, top=2cm, bottom=2cm
 ]{geometry}
+
+\numberwithin{equation}{section}
+
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Теорема}
+\newtheorem{lemma}{Лемма}
+\newtheorem{statement}{Утверждение}
+\newtheorem*{corollary}{Следствие}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Определение}
+\newtheorem{assumption}{Предположение}
+\newtheorem{remark}{Замечание}
+
 
 % Workaround for a bug in biblatex
 \NewBibliographyString{langjapanese}
